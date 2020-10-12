@@ -1,8 +1,7 @@
 import React from 'react';
 import Layout from './common/Layout';
 
-const Course = ({history}) => {
-  
+const Course = ({ history }) => {
   return (
     <div className="Course">
       <Layout history={history}>
@@ -10,10 +9,9 @@ const Course = ({history}) => {
           <div>#파이썬</div>
         </header>
       </Layout>
-    
-    </div>
-  )
- 
+         
+    </div>
+  );
 };
 
 export default Course;

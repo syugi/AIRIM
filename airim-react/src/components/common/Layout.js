@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SideMenu from './SideMenu'; 
+import SideMenu from './SideMenu';
 
 const LayoutBlock = styled.div`
   width: 512px;
@@ -19,26 +19,24 @@ const LayoutBlock = styled.div`
   flex-direction: column;
 `;
 
-const top = styled.div`
-`;
-
-const Layout = ({children, history}) => {
-
-  // 홈으로
-  const handleGoHome = () => {
+const Layout = ({ children, history }) => {
+  // 홈으로
+  const handleGoHome = () => {
+    if (!history) {
+      return;
+    }
     history.push('/');
   };
-  
+
   return (
     <LayoutBlock>
-      <top>
-        <button onClick={handleGoHome}>홈으로</button>
+      <div>
+        <button onClick={handleGoHome}>홈으로</button>
         <SideMenu />
-      </top>
+      </div>
       {children}
     </LayoutBlock>
-    )
-
+  );
 };
 
 export default Layout;
