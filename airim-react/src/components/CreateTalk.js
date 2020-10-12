@@ -1,6 +1,7 @@
 import React from 'react';
 
-function CreateTalk({ type, content, onChange, onCreate }) {
+const CreateTalk = ({ type, content, onChange, onCreate }) => {
+//function CreateTalk({ type, content, onChange, onCreate }) {
   return (
     <div>
       <input

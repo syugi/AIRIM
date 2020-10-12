@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import Layout from './common/Layout';
+import CourseList from './CourseList';
+
 const Home = () => {
+  
   const style = {
     // backgroundColor: 'black',
     // color: 'aqua',
@@ -11,16 +15,23 @@ const Home = () => {
 
   return (
     <div className="Home">
-      <nav>
-        <div>경연</div>
-      </nav>
-      <ul>
-        <li>#파이썬</li>
-        <li>#자연어처리</li>
-        <li>#R머신러닝</li>
-      </ul>
-      <button style={style}>내강의 만들기</button>   
-      <Link to="/CourseIntro">강의소개</Link>
+      
+      <Layout >
+        <nav>
+          <div>경연</div>
+        </nav>
+        <ul>
+          <li>#파이썬</li>
+          <li>#자연어처리</li>
+          <li>#R머신러닝</li>
+        </ul>
+
+        <CourseList />
+        
+        <button style={style}><Link to="/CreateCourse">내강의 만들기</Link></button>   
+      </Layout>  
+      
+     
     </div>
   );
 };
