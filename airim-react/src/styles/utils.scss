@@ -2,13 +2,85 @@
 @import "~open-color/open-color";
 
 // 변수 사용하기
-$red: #fa5252;
-$orange: #fd7e14;
-$yellow: #fcc419;
-$green: #40c057;
-$blue: #339af0;
-$indigo: #5c7cfa;
-$violet: #7950f2;
+// $red: #fa5252;
+// $orange: #fd7e14;
+// $yellow: #fcc419;
+// $green: #40c057;
+// $blue: #339af0;
+// $indigo: #5c7cfa;
+// $violet: #7950f2;
+
+$white: #ffffff;
+$gray: #f2f3f5;
+$light_gray: #fafafa;
+$bluish_gray: #e5e8ea;
+$dark_gray: #718592;
+$smoke: #F6F7F8;
+$text_gray: #b3b3b3;
+$text_dark_gray: #83949e;
+$red: #FF3366;
+$yellow: #ffce33;
+$dark: #011627;
+$green: #2EC4B6;
+$blue: #20A4F3;
+$pink: #ff33d8;
+
+$bg_white: #ffffff;
+$bg_night_white: #192935;
+
+$bg_gray: #f2f3f5;
+$bg_night_gray: #0e161d;
+
+$border_gray: $bluish_gray;
+$border_night_gray: #284254;
+
+$spacer: 5px;
+$spacer_m: $spacer*2;
+$spacer_xm: $spacer*3;
+$spacer_xxm: $spacer*4;
+$spacer_xxxm: $spacer*5;
+$spacer_l: $spacer*6;
+$spacer_xl: $spacer*7;
+$spacer_xxl: $spacer*8;
+$spacer_xxxl: $spacer*9;
+
+$btn_height: 38px;
+$btn_width: 110px;
+
+
+$shadow-l0: 0 1px 3px rgba(0,0,0,0.1);
+$shadow-l1: 0 4px 8px rgba(0,0,0,0.2);
+$shadow-l2: 0 6px 20px rgba(0, 0, 0, 0.3);
+
+$header_height: 50px;
+$aside_width: 200px;
+
+$cart_width: 350px;
+
+$product_min_height: 260px;
+$product_image_height: 200px;
+$product_details_image_height: 300px;
+$product_details_media_width: 550px;
+$discount_height: 22px;
+
+$colorpicker_items_per_row: 5;
+$colorpicker_spacing: $spacer / 2;
+$colorpicker_size: (($aside_width - ($spacer_xxm * 2)) / $colorpicker_items_per_row) - ($colorpicker_spacing * 2) - 1;
+
+$tablet_breakpoint: 1024px;
+$tablet_s_breakpoint: 800px;
+$tablet_xs_breakpoint: 600px;
+
+$header_z: 9;
+$z_l0: 9;
+$z_l1: 99;
+
+$counter_size: 20px;
+
+$ph_height: 15px;
+$ph_radius: 5px;
+
+$time: 0.2s;
 
 // 믹스인 만들기 (재사용되는 스타일 블록을 함수처럼 사용 할 수 있음)
 @mixin square($size) {
@@ -16,3 +88,50 @@ $violet: #7950f2;
   width: $calculated;
   height: $calculated;
 }
+
+* {
+  box-sizing: border-box;
+  word-break: break-word;
+  max-width: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+a {
+  text-decoration: none; 
+  display: inline-block;
+}
+
+.btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: $spacer_m;
+  border-radius: 7px;
+  font-size: 13px;
+  
+  &.wide{
+    width: 100%;
+  }
+  
+  .icon,
+  .text{
+    height: 18px;
+    line-height: 18px;
+  }
+  
+  .icon{
+    font-size: 13px;    
+  }
+  
+  .icon + .text{
+    padding-left: $spacer;
+  }
+}
+
+.md-icon{
+  height:30px;
+  width:30px;
+}
+
