@@ -7,7 +7,7 @@ const SideMenu = () => {
   const MENU_WIDTH = 300;
 
   const [open, setOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   
   const SlideMenu = styled.div`
      background: #ffffff;
@@ -22,20 +22,19 @@ const SideMenu = () => {
 
     h3 {
       font-size: 1.9em;
-padding-top: 3rem;
-      padding-bottom: 5rem;
+      padding: 2em 1em;
       margin: 0;
       font-weight: 700;
-      //background: #0d77b6;
+      background: #e5e8ea;
     }
  
    .slidemenu-list a{
       display: block;
       color: black;
       font-size: 1.1em;
-      font-weight: 300;
+      font-weight: 700;
 
-      border-bottom: 1px solid #258ecd;
+      // border-bottom: 1px solid #258ecd;
       padding: 1em;
 
       &:hover {
@@ -45,6 +44,12 @@ padding-top: 3rem;
 
 ${props =>{
   return isLoggedIn || css`
+h3{
+  background: #ffffff;
+  padding-left:0px;
+  
+}
+
 input{
   width:100%;
 height:35px;
@@ -125,7 +130,7 @@ display: inline-block;
         <div onClick={handleCloseMenu}><MdClose className="md-icon"/></div>
         {isLoggedIn ? (
           <div>
-            <h3>에이림님 환영합니다.</h3>
+            <h3>에이림님<br/>환영합니다.</h3>
             <div className="slidemenu-list">
               <Link to="/">나의정보 확인</Link>
               <Link to="/CreateCourse">내강의 만들기</Link>
