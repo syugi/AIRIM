@@ -5,7 +5,7 @@ import SideMenu from './SideMenu';
 
 const LayoutBlock = styled.div`
    width: 512px;
-   height: 768px;
+  // height: 768px;
    
    padding: 1em;
   // position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
@@ -21,32 +21,33 @@ const LayoutBlock = styled.div`
   // flex-direction: column;
 `;
 
-const header = styled.div`
-  display: flex; 
+const Header = styled.div`
+//display:inline-box;
+ margin-bottom:2em;
 `;
 
 const Nav = styled(NavLink)`
-//background: red;
 font-weight: bold;
 font-size: 24px;
 color: black;
-  &:hover {
+&:hover {
      color: gray;
 }
+
 `;
+
 
 const Layout = ({children}) => {
   return (
     <LayoutBlock>
-      <header>
+      <Header>
         <Nav
           to="/"
           //activeStyle={{ background: 'black', color: 'white' }}
-          >
-          경연
+          >경연
         </Nav>
-        <SideMenu />
-      </header>
+        <SideMenu/>
+      </Header>
       {children}
     </LayoutBlock>
   );

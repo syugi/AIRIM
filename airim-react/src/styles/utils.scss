@@ -102,6 +102,10 @@ a {
   display: inline-block;
 }
 
+li {
+   list-style:none;
+   padding-left:0px;
+}
 .btn{
   display: flex;
   align-items: center;
@@ -133,5 +137,18 @@ a {
 .md-icon{
   height:30px;
   width:30px;
+  cursor: pointer;
 }
+
+.fa-icon{
+  height:18px;
+  width:18px;
+}
+
+
+
+
+
+
+
 

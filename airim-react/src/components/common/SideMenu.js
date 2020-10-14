@@ -12,18 +12,19 @@ const SideMenu = () => {
   const SlideMenu = styled.div`
      background: #ffffff;
     position: fixed;
-
+padding: 2em;
     width: ${MENU_WIDTH}px;
     height: 100%;
     top: 0;
     z-index: 1000;
-    padding: 15px 20px;
+
+    
     right: ${(props) => (props.open ? '0px' : MENU_WIDTH * -1 + 'px')};
 
     h3 {
       font-size: 1.9em;
       padding: 2em 1em;
-      margin: 0;
+      margin: 2em 0;
       font-weight: 700;
       background: #e5e8ea;
     }
@@ -35,19 +36,23 @@ const SideMenu = () => {
       font-weight: 700;
 
       // border-bottom: 1px solid #258ecd;
-      padding: 1em;
+      padding: 1em;
 
       &:hover {
-        background: #258ecd;
+        background: #011627;
+color:white;
       }
     }
 
 ${props =>{
   return isLoggedIn || css`
+
+//padding-left:20px;
+
 h3{
   background: #ffffff;
   padding-left:0px;
-  
+  margin : 0; 
 }
 
 input{
@@ -110,24 +115,20 @@ margin-top:4em;
    `;
    
    const MenuIcon = styled.div`
-       // background: #258ecd;
-       // display: block;
-        position: relative;
-display: inline-block;
+     float: right;
    `;
 
 
   const handleCloseMenu = () => setOpen(false);  
     
   return (
-    <div>
+    <div style={{float:'right'}}> 
       <MenuIcon onClick={() => setOpen(!open)}><MdMenu className="md-icon"/></MenuIcon>
-      <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
-        Login : {isLoggedIn ? 'true' : 'false'}
-      </button>
-      
-      <SlideMenu open={open} isLoggedIn={isLoggedIn}>
-        <div onClick={handleCloseMenu}><MdClose className="md-icon"/></div>
+      <button   onClick={() => setIsLoggedIn(!isLoggedIn)}>LOGIN</button>
+        {/* Login : {isLoggedIn ? 'true' : 'false'} </button> 
+      */
+    }  <SlideMenu open={open} isLoggedIn={isLoggedIn}>
+        <div style={{float:'right'}}onClick={handleCloseMenu}><MdClose className="md-icon"/></div>
         {isLoggedIn ? (
           <div>
             <h3>에이림님<br/>환영합니다.</h3>
