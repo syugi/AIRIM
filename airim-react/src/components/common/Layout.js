@@ -4,10 +4,9 @@ import { NavLink } from 'react-router-dom';
 import SideMenu from './SideMenu';
 
 const LayoutBlock = styled.div`
-width:100%;   
-//width: 512px;
+  width: 100%;
+  //width: 512px;
   // height: 768px;
-
   padding: 1em;
   // position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
   background: #f2f3f5;
