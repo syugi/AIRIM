@@ -20,24 +20,21 @@ const CourseList = () => {
       id: 1,
       title: '파이썬 자연어처리 배우기',
       thumb_path: 'https://source.unsplash.com/user/ilyapavlov/600x400',
-      tag_1: '#파이썬',
-      tag_2: '#자연어처리',
+      tags: ['#파이썬','#자연어처리'],
       visible:true,
     },
     {
       id: 2,
       title: 'R머신러닝 자연어처리 배우기',
       thumb_path: 'https://source.unsplash.com/user/erondu/600x400',
-      tag_1: '#R머신러닝',
-      tag_2: '#자연어처리',
+      tags: ['#R머신러닝','#자연어처리'],
       visible:true,
     },
     {
       id: 3,
       title: '파이썬 텐서플로우 배우기',
       thumb_path: 'https://source.unsplash.com/user/_vickyreyes/600x400',
-      tag_1: '#파이썬',
-      tag_2: '#텐서플로우',
+      tags: ['#파이썬','#텐서플로우','#'],
       visible:true,
     },
   ]);
@@ -179,7 +176,10 @@ const CourseList = () => {
               style={{ backgroundImage: 'url(' + course.thumb_path + ')' }}
             >
               <h4>
-                {course.tag_1} {course.tag_2}
+                {course.tags.map((tag,i) => (
+                  i<2 ? tag + ' ' : ''
+                ))}
+                
               </h4>
             </CourseImg>
             <CourseInfo>
