@@ -34,7 +34,7 @@ const CourseList = () => {
       id: 3,
       title: '파이썬 텐서플로우 배우기',
       thumb_path: 'https://source.unsplash.com/user/_vickyreyes/600x400',
-      tags: ['#파이썬','#텐서플로우','#'],
+      tags: ['#파이썬','#텐서플로우','#이거이거'],
       visible:true,
     },
   ]);
