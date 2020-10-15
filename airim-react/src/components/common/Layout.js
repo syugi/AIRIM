@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom';
 import SideMenu from './SideMenu';
 
 const LayoutBlock = styled.div`
-  width: 512px;
+width:100%;   
+//width: 512px;
   // height: 768px;
 
   padding: 1em;

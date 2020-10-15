@@ -110,67 +110,72 @@ const SideMenu = () => {
     float: right;
   `;
 
-  const handleCloseMenu = () => setOpen(false);
+  
+  const BeforeLogin= () => {
+    return (
+      <div>           
+          <h3>
+            경연에 입장하여
+            <br />
+            다양한 지식과
+            <br />
+            함께하세요
+          </h3>
+          <input
+            type="text"
+            name="id"
+            placeholder="ID"
+            onChange={(e) => {
+              //console.log(e.target.value);
+            }}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={(e) => {
+              console.log(e.target.value);
+            }}
+          />
+          <div className="login-link">
+            <Link to="/">아이디/비밀번호 찾기</Link>
+            <Link to="/">회원가입</Link>
+          </div>
+          <button>로그인</button>           
+      </div>
+    );
+  };
+  
+  const AfterLogin= () => {
+    return (
+      <div>
+        <h3>
+          에이림님
+          <br />
+          환영합니다.
+        </h3>
+        <div className="slidemenu-list">
+          <Link to="/">나의정보 확인</Link>
+          <Link to="/CreateCourse">내강의 만들기</Link>
+          <Link to="/">로그아웃</Link>
+        </div>
+      </div>
+    );
+  };
+  
+  const handleCloseMenu = () => setOpen(false);
   return (
     <div style={{ float: 'right' }}>
       <MenuIcon onClick={() => setOpen(!open)}>
         <MdMenu className="md-icon" />
       </MenuIcon>
-           <button onClick={() => setIsLoggedIn(!isLoggedIn)}>LOGIN</button>   
-         
-      {/* Login : {isLoggedIn ? 'true' : 'false'} </button>
-       */}
+      <button onClick={() => setIsLoggedIn(!isLoggedIn)}>{isLoggedIn ? 'logout' : 'login'}</button>    
        
       <SlideMenu open={open} isLoggedIn={isLoggedIn}>
         <div style={{ float: 'right' }} onClick={handleCloseMenu}>
           <MdClose className="md-icon" />
         </div>
-        {isLoggedIn ? (
-          <div>
-            <h3>
-              에이림님
-              <br />
-              환영합니다.
-            </h3>
-            <div className="slidemenu-list">
-              <Link to="/">나의정보 확인</Link>
-              <Link to="/CreateCourse">내강의 만들기</Link>
-              <Link to="/">로그아웃</Link>
-            </div>
-          </div>
-        ) : (
-          <div>
-                       
-            <h3>
-              경연에 입장하여
-              <br />
-              다양한 지식과
-              <br />
-              함께하세요
-            </h3>
-            <input
-              type="text"
-              name="id"
-              placeholder="ID"
-              onChange={(e) => {
-                //console.log(e.target.value);
-              }}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={(e) => {
-                console.log(e.target.value);
-              }}
-            />
-            <div className="login-link">
-              <Link to="/">아이디/비밀번호 찾기</Link>
-              <Link to="/">회원가입</Link>
-            </div>
-            <button>로그인</button>           
-          </div>
-        )}
+        {isLoggedIn ? (<AfterLogin />) : (<BeforeLogin />)}
       </SlideMenu>
          
     </div>
