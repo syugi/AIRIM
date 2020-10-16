@@ -1,44 +1,8 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import {MdClose} from "react-icons/md";
 
-const CourseList = () => {
-  const [tags, setTags] = useState([
-    { id: 1, text: '#파이썬', active: false },
-    { id: 2, text: '#자연어처리', active: false },
-    { id: 3, text: '#R머신러닝', active: false },
-    { id: 4, text: '#텐서플로우', active: false },
-    { id: 5, text: '#파이썬', active: false },
-    { id: 6, text: '#자연어처리', active: false },
-    { id: 7, text: '#R머신러닝', active: false },
-    { id: 8, text: '#이거이거', active: false },
-  ]);
-  
-  const courseArr = [
-    {
-      id: 1,
-      title: '파이썬 자연어처리 배우기',
-      thumb_path: 'https://source.unsplash.com/user/ilyapavlov/600x400',
-      tags: ['#파이썬', '#자연어처리'],
-      visible: true,
-    },
-    {
-      id: 2,
-      title: 'R머신러닝 자연어처리 배우기',
-      thumb_path: 'https://source.unsplash.com/user/erondu/600x400',
-      tags: ['#R머신러닝', '#자연어처리'],
-      visible: true,
-    },
-    {
-      id: 3,
-      title: '파이썬 텐서플로우 배우기',
-      thumb_path: 'https://source.unsplash.com/user/_vickyreyes/600x400',
-      tags: ['#파이썬', '#텐서플로우', '#이거이거'],
-      visible: true,
-    },
-  ];
-  const [courses, setCourses] = useState(courseArr);
-  const [orgCourses, setOrgCourses] = useState(courseArr);
 
   const TagsBlock = styled.div`
     //background:red;
@@ -49,6 +13,8 @@ const CourseList = () => {
   `;
   const Tag = styled.div`
     background: #011627;
+display:flex;
+align-items:center;
     //display:inline-block;
     padding: 0.5em;
     //margin: 0.4em;
@@ -126,6 +92,44 @@ const CourseList = () => {
       margin-top: 1em;
     }
   `;
+
+const CourseList = () => {
+  
+  const [tags, setTags] = useState([
+    { id: 1, text: '#파이썬', active: false },
+    { id: 2, text: '#자연어처리', active: false },
+    { id: 3, text: '#R머신러닝', active: false },
+    { id: 4, text: '#텐서플로우', active: false },
+    { id: 5, text: '#파이썬', active: false },
+    { id: 6, text: '#자연어처리', active: false },
+    { id: 7, text: '#R머신러닝', active: false },
+    { id: 8, text: '#이거이거', active: false },
+  ]);
+  
+  const courseArr = [
+    {
+      id: 1,
+      title: '파이썬 자연어처리 배우기',
+      thumb_path: 'https://source.unsplash.com/user/ilyapavlov/600x400',
+      tags: ['#파이썬', '#자연어처리'],
+    },
+    {
+      id: 2,
+      title: 'R머신러닝 자연어처리 배우기',
+      thumb_path: 'https://source.unsplash.com/user/erondu/600x400',
+      tags: ['#R머신러닝', '#자연어처리'],
+    },
+    {
+      id: 3,
+      title: '파이썬 텐서플로우 배우기',
+      thumb_path: 'https://source.unsplash.com/user/_vickyreyes/600x400',
+      tags: ['#파이썬', '#텐서플로우', '#이거이거'],
+    },
+  ];
+  const [courses, setCourses] = useState(courseArr);
+  const [orgCourses, setOrgCourses] = useState(courseArr); //초기화용 
+
+  
   const handleTagClick = (selectTag) => {
     setTags(
       tags.map((tag) =>
@@ -150,32 +154,31 @@ const CourseList = () => {
             key={tag.id}
             onClick={() => handleTagClick(tag)}
             active={tag.active}
-          >
+          >
             {tag.text}
+            {/*{tag.active && <MdClose style={{marginLeft:'0.1em'}}/>}*/}
           </Tag>
         ))}
       </TagsBlock>
       <CoursBlock>
-        {courses.map((course) =>
-          course.visible ? (
-            <Course key={course.id}>
-              <CourseImg
-                style={{ backgroundImage: 'url(' + course.thumb_path + ')' }}
-              >
-                <h4>{course.tags.map((tag, i) => (i < 2 ? tag + ' ' : ''))}</h4>
-              </CourseImg>
+        {courses.map((course) =>           
+            <Course key={course.id}>
+              <Link to={"/Course/"+course.id}>
+                <CourseImg
+                  style={{ backgroundImage: 'url(' + course.thumb_path + ')' }}
+                  >
+                  <h4>{course.tags.map((tag, i) => (i < 2 ? tag + ' ' : ''))}</h4>
+                </CourseImg>
+                </Link>
               <CourseInfo>
                 <h2>{course.title}</h2>
                 <p>에이림/이재화강사님</p>
                 <p>{JSON.stringify(course.visible)}</p>
-                <Link to="/Course">
+                <Link to={"/Course/"+course.id}>
                   <button>학습하기</button>
                 </Link>
               </CourseInfo>
             </Course>
-          ) : (
-            ''
-          ),
         )}
       </CoursBlock>
          

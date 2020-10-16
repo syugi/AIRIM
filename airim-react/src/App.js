@@ -1,7 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Roster from './Roster';
-import Layout from './components/common/Layout';
 import './App.css';
 import utils from './styles/utils.scss';
 
@@ -15,9 +14,7 @@ const App = () => {
   return (
     <div >
       <GlobalStyle />
-      <Layout>
-        <Roster /> 
-      </Layout>
+      <Roster /> 
     </div>
   
   );

@@ -27,7 +27,7 @@ const SideMenu = () => {
       background: #e5e8ea;
     }
 
-    .slidemenu-list a {
+    .slidemenu-list > a{
       display: block;
       color: black;
       font-size: 1.1em;
@@ -35,6 +35,7 @@ const SideMenu = () => {
 
       // border-bottom: 1px solid #258ecd;
       padding: 1em;
+
       &:hover {
         background: #011627;
         color: white;
@@ -141,7 +142,7 @@ const SideMenu = () => {
             <Link to="/">아이디/비밀번호 찾기</Link>
             <Link to="/">회원가입</Link>
           </div>
-          <button>로그인</button>           
+          <button onClick={() => setIsLoggedIn(true)}>로그인</button>           
       </div>
     );
   };
@@ -155,24 +156,24 @@ const SideMenu = () => {
           환영합니다.
         </h3>
         <div className="slidemenu-list">
+          <Link to="/">홈</Link>
           <Link to="/">나의정보 확인</Link>
           <Link to="/CreateCourse">내강의 만들기</Link>
-          <Link to="/">로그아웃</Link>
+          <Link onClick={() => setIsLoggedIn(false)}>로그아웃</Link>
         </div>
       </div>
     );
   };
   
-  const handleCloseMenu = () => setOpen(false);
   return (
     <div style={{ float: 'right' }}>
       <MenuIcon onClick={() => setOpen(!open)}>
         <MdMenu className="md-icon" />
       </MenuIcon>
-      <button onClick={() => setIsLoggedIn(!isLoggedIn)}>{isLoggedIn ? 'logout' : 'login'}</button>    
+      {/*<button onClick={() => setIsLoggedIn(!isLoggedIn)}>{isLoggedIn ? 'logout' : 'login'}</button>*/}
        
       <SlideMenu open={open} isLoggedIn={isLoggedIn}>
-        <div style={{ float: 'right' }} onClick={handleCloseMenu}>
+        <div style={{ float: 'right' }} onClick={() => setOpen(false)}>
           <MdClose className="md-icon" />
         </div>
         {isLoggedIn ? (<AfterLogin />) : (<BeforeLogin />)}

@@ -12,7 +12,7 @@ class Roster extends React.Component {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/courseList" component={CourseList}/>
-        <Route exact path="/course" component={Course}/>
+        <Route exact path="/course/:courseId" component={Course}/>
         <Route exact path="/createCourse" component={CreateCourse}/>
         <Route exact path="/createTalk" component={CreateTalk}/>
         <Route
