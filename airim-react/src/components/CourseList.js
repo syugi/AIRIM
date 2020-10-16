@@ -13,7 +13,8 @@ const CourseList = () => {
     { id: 7, text: '#R머신러닝', active: false },
     { id: 8, text: '#이거이거', active: false },
   ]);
-  const [courses, setCourses] = useState([
+  
+  const courseArr = [
     {
       id: 1,
       title: '파이썬 자연어처리 배우기',
@@ -35,9 +36,9 @@ const CourseList = () => {
       tags: ['#파이썬', '#텐서플로우', '#이거이거'],
       visible: true,
     },
-  ]);
-
-  //const orgCourses = [...courses];
+  ];
+  const [courses, setCourses] = useState(courseArr);
+  const [orgCourses, setOrgCourses] = useState(courseArr);
 
   const TagsBlock = styled.div`
     //background:red;
@@ -128,23 +129,17 @@ const CourseList = () => {
   const handleTagClick = (selectTag) => {
     setTags(
       tags.map((tag) =>
-        tag.id === selectTag.id ? { ...tag, active: !tag.active } : tag,
+        tag.id === selectTag.id 
+        ? { ...tag, active: !tag.active } 
+        :  { ...tag, active: false },
       ),
-      filterCourseByTag(selectTag),
     );
-  };
-
-  const filterCourseByTag = (tag) => {
+    
     setCourses(
-      courses.map((course) => {
-        const activeTags = tags.filter((tag) => tag.active);
-        console.log('activeTags', activeTags);
-        //   const tagList = course.tags.filter(tag => activeTags.includes(tag.text))
-        return course.tags.includes(tag.text)
-          ? { ...course, visible: true }
-          : { ...course, visible: false };
-      }),
-    );
+      !selectTag.active 
+      ? orgCourses.filter(course => course.tags.includes(selectTag.text)) 
+      : orgCourses
+    )
   };
 
   return (
