@@ -1,100 +1,98 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import {MdClose} from "react-icons/md";
+import { MdClose } from 'react-icons/md';
 
+const TagsBlock = styled.div`
+  //background:red;
+  display: flex;
+  margin: 1em 0;
+  flex-wrap: wrap;
+  //justify-content:space-between;
+`;
+const Tag = styled.div`
+  background: #011627;
+  display: flex;
+  align-items: center;
+  //display:inline-block;
+  padding: 0.5em;
+  //margin: 0.4em;
+  color: #ffff;
+  cursor: pointer;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
 
-  const TagsBlock = styled.div`
-    //background:red;
-    display: flex;
-    margin: 1em 0;
-    flex-wrap: wrap;
-    //justify-content:space-between;
-  `;
-  const Tag = styled.div`
-    background: #011627;
-display:flex;
-align-items:center;
-    //display:inline-block;
-    padding: 0.5em;
-    //margin: 0.4em;
+  &:hover {
+    //background: #83949e;
+  }
+
+  ${(props) =>
+    props.active &&
+    css`
+      background: blue;
+    `}
+`;
+
+const CoursBlock = styled.div`
+  //background:red;
+  //display:inline-block;
+  display: flex;
+  //justify-content:space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  // float:right;
+  margin: 0;
+  //min-height: 75vh;
+  white-space: normal;
+  overflow-x: scroll;
+  // margin-top:-70px;
+`;
+
+const Course = styled.div`
+  margin-bottom: 1em;
+  max-width: 18em;
+  width: 45%;
+  margin-right: 1rem;
+`;
+
+const CourseImg = styled.div`
+  display: block;
+  padding: 1em;
+  height: 12em;
+
+  h4 {
     color: #ffff;
-    cursor: pointer;
-    margin-right: 0.3em;
-    margin-bottom: 0.3em;
+    font-size: 1.5em;
+    background: #011627;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.5em;
+  }
+`;
 
-    &:hover {
-      //background: #83949e;
-    }
-
-    ${(props) =>
-      props.active &&
-      css`
-        background: blue;
-      `}
-  `;
-
-  const CoursBlock = styled.div`
-    //background:red;
-    //display:inline-block;
-    display: flex;
-    //justify-content:space-between;
-    flex-wrap: wrap;
-    width: 100%;
-    // float:right;
+const CourseInfo = styled.div`
+  h2 {
+    margin-bottom: 6px;
+  }
+  p {
+    font-weight: 300;
+    font-size: 13px;
     margin: 0;
-    //min-height: 75vh;
-    white-space: normal;
-    overflow-x: scroll;
-    // margin-top:-70px;
-  `;
+    //margin-top:-15px;
+  }
 
-  const Course = styled.div`
-    margin-bottom: 1em;
-    max-width: 18em;
-    width: 45%;
-    margin-right: 1rem;
-  `;
-
-  const CourseImg = styled.div`
-    display: block;
-    padding: 1em;
-    height: 12em;
-
-    h4 {
-      color: #ffff;
-      font-size: 1.5em;
-      background: #011627;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 0.5em;
-    }
-  `;
-
-  const CourseInfo = styled.div`
-    h2 {
-      margin-bottom: 6px;
-    }
-    p {
-      font-weight: 300;
-      font-size: 13px;
-      margin: 0;
-      //margin-top:-15px;
-    }
-
-    button {
-      color: white;
-      font-weight: bold;
-      outline: none;
-      border: none;
-      cursor: pointer;
-      background: #011627;
-      padding: 0.5em 1em;
-      margin-top: 1em;
-    }
-  `;
+  button {
+    color: white;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background: #011627;
+    padding: 0.5em 1em;
+    margin-top: 1em;
+  }
+`;
 
 const CourseList = () => {
-  
   const [tags, setTags] = useState([
     { id: 1, text: '#파이썬', active: false },
     { id: 2, text: '#자연어처리', active: false },
@@ -105,7 +103,7 @@ const CourseList = () => {
     { id: 7, text: '#R머신러닝', active: false },
     { id: 8, text: '#이거이거', active: false },
   ]);
-  
+
   const courseArr = [
     {
       id: 1,
@@ -127,23 +125,22 @@ const CourseList = () => {
     },
   ];
   const [courses, setCourses] = useState(courseArr);
-  const [orgCourses, setOrgCourses] = useState(courseArr); //초기화용 
+  const [orgCourses, setOrgCourses] = useState(courseArr); //초기화용
 
-  
   const handleTagClick = (selectTag) => {
     setTags(
       tags.map((tag) =>
-        tag.id === selectTag.id 
-        ? { ...tag, active: !tag.active } 
-        :  { ...tag, active: false },
+        tag.id === selectTag.id
+          ? { ...tag, active: !tag.active }
+          : { ...tag, active: false },
       ),
     );
-    
+
     setCourses(
-      !selectTag.active 
-      ? orgCourses.filter(course => course.tags.includes(selectTag.text)) 
-      : orgCourses
-    )
+      !selectTag.active
+        ? orgCourses.filter((course) => course.tags.includes(selectTag.text))
+        : orgCourses,
+    );
   };
 
   return (
@@ -154,34 +151,33 @@ const CourseList = () => {
             key={tag.id}
             onClick={() => handleTagClick(tag)}
             active={tag.active}
-          >
+          >
             {tag.text}
             {/*{tag.active && <MdClose style={{marginLeft:'0.1em'}}/>}*/}
           </Tag>
         ))}
       </TagsBlock>
       <CoursBlock>
-        {courses.map((course) =>           
-            <Course key={course.id}>
-              <Link to={"/Course/"+course.id}>
-                <CourseImg
-                  style={{ backgroundImage: 'url(' + course.thumb_path + ')' }}
-                  >
-                  <h4>{course.tags.map((tag, i) => (i < 2 ? tag + ' ' : ''))}</h4>
-                </CourseImg>
-                </Link>
-              <CourseInfo>
-                <h2>{course.title}</h2>
-                <p>에이림/이재화강사님</p>
-                <p>{JSON.stringify(course.visible)}</p>
-                <Link to={"/Course/"+course.id}>
-                  <button>학습하기</button>
-                </Link>
-              </CourseInfo>
-            </Course>
-        )}
+        {courses.map((course) => (
+          <Course key={course.id}>
+            <Link to={'/Course/' + course.id}>
+              <CourseImg
+                style={{ backgroundImage: 'url(' + course.thumb_path + ')' }}
+              >
+                <h4>{course.tags.map((tag, i) => (i < 2 ? tag + ' ' : ''))}</h4>
+              </CourseImg>
+            </Link>
+            <CourseInfo>
+              <h3>{course.title}</h3>
+              <p>에이림/이재화강사님</p>
+              <p>{JSON.stringify(course.visible)}</p>
+              <Link to={'/Course/' + course.id}>
+                <button>학습하기</button>
+              </Link>
+            </CourseInfo>
+          </Course>
+        ))}
       </CoursBlock>
-         
     </div>
   );
 };

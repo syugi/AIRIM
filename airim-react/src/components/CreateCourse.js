@@ -13,7 +13,6 @@ const CreateCourse = ({ history }) => {
           <Link to="/CreateTalk">톡 만들기</Link>
         </button>
       </Layout>
-         
     </div>
   );
 };
