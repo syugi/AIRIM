@@ -5,16 +5,18 @@ import CourseList from './components/CourseList';
 import Course from './components/Course';
 import CreateCourse from './components/CreateCourse';
 import CreateTalk from './components/CreateTalk';
+import InstrCourseList from './components/InstrCourseList';
 
 class Roster extends React.Component {
-  render(){
+  render() {
     return (
       <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/courseList" component={CourseList}/>
-        <Route exact path="/course/:courseId" component={Course}/>
-        <Route exact path="/createCourse" component={CreateCourse}/>
-        <Route exact path="/createTalk" component={CreateTalk}/>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/courseList" component={CourseList} />
+        <Route exact path="/course/:courseId" component={Course} />
+        <Route exact path="/createCourse" component={CreateCourse} />
+        <Route exact path="/createTalk" component={CreateTalk} />
+        <Route exact path="/instrCourseList" component={InstrCourseList} />
         <Route
           // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
           render={({ location }) => (
@@ -24,10 +26,9 @@ class Roster extends React.Component {
             </div>
           )}
         />
-        
-      </Switch>    
+      </Switch>
     );
-  } 
+  }
 }
 
 export default Roster;

@@ -157,7 +157,7 @@ const SideMenu = () => {
         <div className="slidemenu-list">
           <Link to="/">홈</Link>
           <Link to="/">나의정보 확인</Link>
-          <Link to="/CreateCourse">내강의 만들기</Link>
+          <Link to="/InstrCourseList">내강의 관리</Link>
           <Link to="/" onClick={() => setIsLoggedIn(false)}>
             로그아웃
           </Link>
