@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Home from './components/Home';
-import CourseList from './components/CourseList';
-import Course from './components/Course';
-import CreateCourse from './components/CreateCourse';
-import CreateTalk from './components/CreateTalk';
-import InstrCourseList from './components/InstrCourseList';
+import Home from 'components/Home';
+import CourseList from 'components/CourseList';
+import Course from 'components/Course';
+import EditCourse from 'components/instr/EditCourse';
+import EditTalk from 'components/instr/EditTalk';
+import CourseMgmt from 'components/instr/CourseMgmt';
 
 class Roster extends React.Component {
   render() {
@@ -13,10 +13,10 @@ class Roster extends React.Component {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/courseList" component={CourseList} />
-        <Route exact path="/course/:courseId" component={Course} />
-        <Route exact path="/createCourse" component={CreateCourse} />
-        <Route exact path="/createTalk" component={CreateTalk} />
-        <Route exact path="/instrCourseList" component={InstrCourseList} />
+        <Route path="/course" component={Course} />
+        <Route path="/instr/editCourse" component={EditCourse} />
+        <Route path="/instr/editTalk" component={EditTalk} />
+        <Route path="/instr/courseMgmt" component={CourseMgmt} />
         <Route
           // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
           render={({ location }) => (

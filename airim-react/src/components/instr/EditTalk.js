@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import useInputs from './common/useInputs';
-import Layout from './common/Layout';
+import useInputs from 'components/common/useInputs';
+import Layout from 'components/common/Layout';
 
-const CreateTalk = ({ history }) => {
+const EditTalk = () => {
   //렌더링 될때마다 호출됨
   useEffect(() => {
     console.log('렌더링이 완료되었습니다!');
@@ -20,7 +20,7 @@ const CreateTalk = ({ history }) => {
   const { name, nickname } = state;
 
   return (
-    <Layout history={history}>
+    <Layout title="톡만들기">
       <div>
         <div>
           <input
@@ -51,4 +51,4 @@ const CreateTalk = ({ history }) => {
   );
 };
 
-export default CreateTalk;
+export default EditTalk;

@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import Roster from './Roster';
 import './App.css';
 import utils from './styles/utils.scss';
+import reset from './styles/reset.scss';
 
 const GlobalStyle = createGlobalStyle`
   body {

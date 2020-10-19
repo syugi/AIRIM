@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import Layout from './common/Layout';
+import Layout from 'components/common/Layout';
 
 const backImg = 'https://source.unsplash.com/user/erondu/600x400';
 
@@ -79,7 +79,8 @@ const Course = ({ match }) => {
   return (
     <Layout
       backImg={backImg}
-      title={course.tags.map((tag, i) => (i < 2 ? tag + ' ' : ''))}
+      title={course.title}
+      //title={course.tags.map((tag, i) => (i < 2 ? tag + ' ' : ''))}
     >
       <div className="Course">
         <CoursHeader>

@@ -40,8 +40,9 @@ const Header = styled.div`
 const Nav = styled(NavLink)`
   font-weight: bold;
   font-size: 24px;
-  color: black;
-  &:hover {
+  color: black;
+  margin-right:0.5em;  
+&:hover {
     color: gray;
   }
 `;
@@ -54,38 +55,41 @@ const TitleBlock = styled.div`
   .title-text {
     font-weight: 700;
     font-size: 1.2em;
-    //color: #ffff;
+    color: black;
   }
+`;
+
+const BackIcon = styled.div`
+//background:black;
+//color:white;
 `;
 
 const Layout = ({ children, history, home, title, backImg }) => {
   return (
     <LayoutBlock backImg={backImg}>
       <Header>
-        {title ? (
-          <TitleBlock>
-            <div onClick={() => history.goBack()}>
-              <MdKeyboardArrowLeft className="md-icon" />
-            </div>
-            <div className="title-text">{title}</div>
-            <SideMenu />
-          </TitleBlock>
-        ) : (
+        {home ? (
           <div>
             <Nav
               to="/" //activeStyle={{ background: 'black', color: 'white' }}
-            >
-              경연
+            >경연
             </Nav>
+            <Nav to="/instr/courseMgmt">내강좌 관리</Nav>
+            
             <SideMenu />
+            <IntroText>
+              #경연: 고려·조선시대에, 임금이 학문이나 기술을 강론·연마하던일. 또는
+              그런자리.
+            </IntroText>
           </div>
-        )}
-
-        {home && (
-          <IntroText>
-            #경연: 고려·조선시대에, 임금이 학문이나 기술을 강론·연마하던일. 또는
-            그런자리.
-          </IntroText>
+        ) :(
+        <TitleBlock>
+            <BackIcon onClick={() => history.goBack()}>
+              <MdKeyboardArrowLeft className="md-icon" />
+            </BackIcon>
+            <div className="title-text">{title}</div>
+            <SideMenu />
+          </TitleBlock>
         )}
       </Header>
 

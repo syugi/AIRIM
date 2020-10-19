@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import CourseList from './CourseList';
+import CourseList from 'components/CourseList';
 import styled from 'styled-components';
-import Layout from './common/Layout';
+import Layout from 'components/common/Layout';
 
 const Home = () => {
   return (
     <Layout home>
-      <div className="Home">
+      <div>
         <CourseList />
       </div>
     </Layout>

@@ -105,6 +105,8 @@ const SlideMenu = styled.div`
 
 const MenuIcon = styled.div`
   float: right;
+//background:black;
+//color:white;
 `;
 
 const SideMenu = () => {
@@ -157,7 +159,7 @@ const SideMenu = () => {
         <div className="slidemenu-list">
           <Link to="/">홈</Link>
           <Link to="/">나의정보 확인</Link>
-          <Link to="/InstrCourseList">내강의 관리</Link>
+          <Link to="/instr/courseMgmt">내강좌 관리</Link>
           <Link to="/" onClick={() => setIsLoggedIn(false)}>
             로그아웃
           </Link>
