@@ -28,7 +28,7 @@ const LayoutBlock = styled.div`
   // margin-top: 96px;
   // margin-bottom: 32px;
   // display: flex;
-  // flex-direction: column;
+  // flex-direction: column;
 `;
 
 const Header = styled.div`

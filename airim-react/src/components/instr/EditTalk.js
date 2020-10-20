@@ -1,52 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import useInputs from 'components/common/useInputs';
+import styled, { css } from 'styled-components';
 import Layout from 'components/common/Layout';
 
-const EditTalk = () => {
-  //렌더링 될때마다 호출됨
-  useEffect(() => {
-    console.log('렌더링이 완료되었습니다!');
-    console.log({
-      name,
-      nickname,
-    });
-  });
 
+const EditTalkBlock = styled.div`
+  width: 400px;
+  height: 700px;
+background: #ffff;
+  padding: 1em;
+margin: 10px;
+`;
+const TalkBlock = styled.div`
+`;
+const InputBlock = styled.div`
+  display:flex;
+`;
+const EditTalk = () => {
+  
   const [state, onChange] = useInputs({
-    name: '',
-    nickname: '',
+      talks : [{
+        talker: '',
+        type:'',
+        content:'',
+        //file_path:'',
+      }]
   });
 
   const { name, nickname } = state;
 
   return (
     <Layout title="톡만들기">
-      <div>
-        <div>
-          <input
-            name="name"
-            placeholder="이름"
-            onChange={onChange}
-            value={name}
-          />
-          <input
-            name="nickname"
-            placeholder="닉네임"
-            onChange={onChange}
-            value={nickname}
-          />
-        </div>
-        <div>
-          <div>
-            <b>이름: </b>
-            {name}
-          </div>
-          <div>
-            <b>닉네임: </b>
-            {nickname}
-          </div>
-        </div>
-      </div>
+      <EditTalkBlock>
+        <TalkBlock>
+        
+        </TalkBlock>
+        <InputBlock>
+        <input
+            name="inputTalk"
+            //onChange={onChange}
+            //value={nickname}
+          />
+          <button className="btn gray">등록</button>
+        </InputBlock>
+      </EditTalkBlock>
     </Layout>
   );
 };

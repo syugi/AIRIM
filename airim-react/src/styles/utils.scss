@@ -123,6 +123,17 @@ $time: 0.2s;
   .icon + .text {
     padding-left: $spacer;
   }
+  
+  &.blue{
+    background: $blue;
+    color: $white;
+  }
+  
+  &.gray{
+    background: $dark_gray;
+    color: $white;
+  }
+  
 }
 
 .md-icon {
