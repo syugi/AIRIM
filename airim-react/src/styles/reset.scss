@@ -259,7 +259,7 @@ ul > li > ul,
 ul > li > ol,
 ol > li > ol,
 ol > li > ul {
-  margin: 0 0 0 15px
+  margin: 0 0 0 15px;
 }
 
 dt {
@@ -437,4 +437,10 @@ template {
   html, body {
       text-rendering: optimizeLegibility;
   }
+}
+
+/* 리스트 앞에 표시 없애기 by.msHeo */
+ul > li,
+ol > li{
+  list-style-type:none;
 }
