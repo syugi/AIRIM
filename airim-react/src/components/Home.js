@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import CourseList from 'components/CourseList';
-import styled from 'styled-components';
-import Layout from 'components/common/Layout';
+import React  from 'react';
+import CourseFilterList from 'components/CourseFilterList';
 
 const Home = () => {
+  
   return (
-    <Layout home>
       <div>
-        <CourseList />
+        <div>홈입니다</div>
+        <CourseFilterList />
       </div>
-    </Layout>
   );
 };
 
