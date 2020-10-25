@@ -31,22 +31,31 @@ const HomeTitleBar = () => (
   </div>
 );
 
-const TitleBar = ({ titleText }) => {
+const TitleBar = ({ title }) => {
   const classes = useStyles();
 
   return (
     <Typography variant="h6" align="center" className={classes.title}>
-      <Link to="/">{titleText}</Link>
+      <Link to="/">{title}</Link>
     </Typography>
   );
 };
 
-const Header = () => {
+const Header = ({ title, isHome }) => {
   const classes = useStyles();
 
-  const isHome = false;
-  const titleText = 'AIRIM';
   const [open, setOpen] = useState(false);
+
+  // const [titleText, setTitleText] = useState('AIRIM');
+  // const [isHome, setIsHome] = useState(false);
+
+  // const handleChangeTitleText = (titleText) => {
+  //   setTitleText(titleText);
+  // };
+
+  // const handleChangeIsHome = (isHome) => {
+  //   setIsHome(isHome);
+  // };
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -61,20 +70,18 @@ const Header = () => {
 
   return (
     <div>
-      <div>
-        <Toolbar>
-          {isHome ? <HomeTitleBar /> : <TitleBar titleText={titleText} />}
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={toggleDrawer(true)}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </div>
+      <Toolbar>
+        {isHome ? <HomeTitleBar /> : <TitleBar title={title} />}
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="menu"
+          onClick={toggleDrawer(true)}
+        >
+          <MenuIcon />
+        </IconButton>
+      </Toolbar>
       <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
         <DrawerMenu toggleDrawer={toggleDrawer} />
       </Drawer>
