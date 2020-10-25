@@ -1,8 +1,7 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const CourseInfo = ({ match }) => {  
-  
+const CourseInfo = ({ match }) => {
   const [course, setCourse] = useState({
     id: 1,
     title: '파이썬 자연어처리 배우기',
@@ -19,45 +18,46 @@ const CourseInfo = ({ match }) => {  
   });
 
   const { courseId } = match.params;
-  
+
   return (
-     <div>
-        <div>
-          <div className="main">{course.line_intro_1}</div>
-          <div className="main">{course.line_intro_2}</div>
-          <div className="sub">{course.line_intro_3}</div>
-        </div>
-        <div>
-          <div className="center">
-            <h2>{course.title}</h2>{courseId}
-            <p className="name">{course.instr_name}</p>
-          </div>
-          <div className="contents">
-            <div className="center">
-              <img src={course.thumb_path} alt="" />
-            </div>
-
-            <p>
-              <h3># 사전 완톡 시간</h3>
-              <div className="time">
-                <h3>완톡 예상 시간</h3>
-                <h1>{course.estmt_time}</h1>
-              </div>
-            </p>
-
-            <p>
-              <h3># 사전 톡 소개</h3>
-              <div>{course.desc}</div>
-            </p>
-
-            <p>
-              <h3># 저자 소개</h3>
-              <div>{course.instr_desc}</div>
-            </p>
-          </div>
-        </div>
-        {/*<textarea value={JSON.stringify(location,null,2)} readOnly />*/}
+    <div>
+      <div>
+        <div className="main">{course.line_intro_1}</div>
+        <div className="main">{course.line_intro_2}</div>
+        <div className="sub">{course.line_intro_3}</div>
       </div>
+      <div>
+        <div className="center">
+          <h2>{course.title}</h2>
+          {courseId}
+          <p className="name">{course.instr_name}</p>
+        </div>
+        <div className="contents">
+          <div className="center">
+            <img src={course.thumb_path} alt="" />
+          </div>
+
+          <p>
+            <h3># 사전 완톡 시간</h3>
+            <div className="time">
+              <h3>완톡 예상 시간</h3>
+              <h1>{course.estmt_time}</h1>
+            </div>
+          </p>
+
+          <p>
+            <h3># 사전 톡 소개</h3>
+            <div>{course.desc}</div>
+          </p>
+
+          <p>
+            <h3># 저자 소개</h3>
+            <div>{course.instr_desc}</div>
+          </p>
+        </div>
+      </div>
+      {/*<textarea value={JSON.stringify(location,null,2)} readOnly />*/}
+    </div>
   );
 };
 

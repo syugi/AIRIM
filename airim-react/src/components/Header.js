@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import SideMenu from 'components/SideMenu';
+import DrawerMenu from 'components/DrawerMenu';
 
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Drawer from '@material-ui/core/Drawer';
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -19,48 +18,67 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const HomeTitleBar = () => (
+  <div>
     <div>
-      <div>
-        <Link>경연</Link> 
-        <Link>내강좌관리</Link> 
-      </div>
-      <div>#경연: 고려·조선시대에, 임금이 학문이나 기술을 강론·연마하던일. 또는
-          그런자리.</div>
+      <Link>경연</Link>
+      <Link>내강좌관리</Link>
     </div>
+    <div>
+      #경연: 고려·조선시대에, 임금이 학문이나 기술을 강론·연마하던일. 또는
+      그런자리.
+    </div>
+  </div>
 );
-  
-const TitleBar = (props) => {
-  const titleText = props.titleText; 
-  
+
+const TitleBar = ({ titleText }) => {
   const classes = useStyles();
-  
+
   return (
-    <div>
-      <Toolbar>
-        <Typography variant="h6" align="center" className={classes.title}>
-          {titleText}
-        </Typography>
-        <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
-      </Toolbar>
-    </div>
+    <Typography variant="h6" align="center" className={classes.title}>
+      <Link to="/">{titleText}</Link>
+    </Typography>
   );
 };
-  
-const Header = () => {  
 
-  const isHome = false; 
+const Header = () => {
+  const classes = useStyles();
+
+  const isHome = false;
   const titleText = 'AIRIM';
-  
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setOpen(open);
+  };
+
   return (
     <div>
-      {isHome ? <HomeTitleBar /> : <TitleBar titleText={titleText}/>}
-      <SideMenu />
+      <div>
+        <Toolbar>
+          {isHome ? <HomeTitleBar /> : <TitleBar titleText={titleText} />}
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+            onClick={toggleDrawer(true)}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </div>
+      <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+        <DrawerMenu toggleDrawer={toggleDrawer} />
+      </Drawer>
     </div>
-  
   );
 };
 

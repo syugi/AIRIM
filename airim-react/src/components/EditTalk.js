@@ -1,11 +1,10 @@
 import React from 'react';
 
-const EditTalk = () => {  
+const EditTalk = () => {
   return (
     <div>
-      <div>톡 수정 페이지 입니다</div>
-    </div>
-  
+      <div>톡 수정 페이지 입니다</div>
+    </div>
   );
 };
 

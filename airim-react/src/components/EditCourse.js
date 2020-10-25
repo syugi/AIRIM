@@ -1,11 +1,10 @@
 import React from 'react';
 
-const EditCourse = () => {  
+const EditCourse = () => {
   return (
     <div>
-      <div>코스 수정 입니다</div>
-    </div>
-  
+      <div>코스 수정 입니다</div>
+    </div>
   );
 };
 

@@ -1,13 +1,12 @@
-import React  from 'react';
+import React from 'react';
 import CourseFilterList from 'components/CourseFilterList';
 
 const Home = () => {
-  
   return (
-      <div>
-        <div>홈입니다</div>
-        <CourseFilterList />
-      </div>
+    <div>
+      <div>홈입니다</div>
+      <CourseFilterList />
+    </div>
   );
 };
 

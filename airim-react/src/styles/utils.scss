@@ -95,7 +95,7 @@ $time: 0.2s;
   word-break: break-word;
   max-width: 100%;
   font-family: 'Open Sans', sans-serif;
- }
+}
 
 .btn {
   display: flex;
@@ -123,17 +123,16 @@ $time: 0.2s;
   .icon + .text {
     padding-left: $spacer;
   }
-  
-  &.blue{
+
+  &.blue {
     background: $blue;
     color: $white;
   }
-  
-  &.gray{
+
+  &.gray {
     background: $dark_gray;
     color: $white;
   }
-  
 }
 
 .md-icon {
