@@ -1,15 +1,25 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from 'components/Home';
-import CourseRoute from 'components/CourseRoute';
-import InstructorRoute from 'components/InstructorRoute';
+import CourseFilterList from 'components/CourseFilterList';
+import CourseInfo from 'components/CourseInfo';
+import Instructor from 'components/Instructor';
+import CreateCourse from 'components/CreateCourse';
+import EditCourse from 'components/EditCourse';
+import EditTalk from 'components/EditTalk';
 
 const Main = (props) => (
   <div>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/course" component={CourseRoute} />
-      <Route path="/instructor" component={InstructorRoute} />
+      
+      <Route exact path="/course" component={CourseFilterList} />
+      <Route path="/course/:courseId" component={CourseInfo} />
+      
+      <Route exact path="/instructor" component={Instructor} />
+      <Route path="/instructor/create" component={CreateCourse} />
+      <Route path="/instructor/course" component={EditCourse} />
+      <Route path="/instructor/talk" component={EditTalk} />
       <Route
         // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
         render={({ location }) => (

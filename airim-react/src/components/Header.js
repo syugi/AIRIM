@@ -7,12 +7,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
 import Drawer from '@material-ui/core/Drawer';
 
 const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
+  // menuButton: {
+  //   marginRight: theme.spacing(2),
+  // },
   title: {
     flexGrow: 1,
   },
@@ -41,13 +42,13 @@ const TitleBar = ({ title }) => {
   );
 };
 
-const Header = ({ title, isHome }) => {
+const Header = () => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
 
-  // const [titleText, setTitleText] = useState('AIRIM');
-  // const [isHome, setIsHome] = useState(false);
+  const [title, setTitle] = useState('AIRIM');
+  const [isHome, setIsHome] = useState(false);
 
   // const handleChangeTitleText = (titleText) => {
   //   setTitleText(titleText);
@@ -71,10 +72,18 @@ const Header = ({ title, isHome }) => {
   return (
     <div>
       <Toolbar>
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="goBack"
+         // onClick={toggleDrawer(true)}
+        >
+          <ArrowBackIos />
+        </IconButton>
         {isHome ? <HomeTitleBar /> : <TitleBar title={title} />}
         <IconButton
           edge="start"
-          className={classes.menuButton}
+          //className={classes.menuButton}
           color="inherit"
           aria-label="menu"
           onClick={toggleDrawer(true)}
