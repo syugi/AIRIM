@@ -92,12 +92,11 @@ const CreateCourse = () => {
             {activeStep === steps.length ? (
               <Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
+                  강의 등록이 완료되었습니다.
+                </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
-                </Typography>
+                  강의 관리 페이지에서 수정가능합니다.
+                </Typography>
               </Fragment>
             ) : (
               <Fragment>
