@@ -3,18 +3,20 @@ import { Route, Switch } from 'react-router-dom';
 import Home from 'components/Home';
 import CourseFilterList from 'components/CourseFilterList';
 import CourseInfo from 'components/CourseInfo';
+import CourseTalk from 'components/CourseTalk';
 import Instructor from 'components/Instructor';
 import CreateCourse from 'components/CreateCourse';
 import EditCourse from 'components/EditCourse';
 import EditTalk from 'components/EditTalk';
 
-const Main = (props) => (
+const Main = () => (
   <div>
     <Switch>
       <Route exact path="/" component={Home} />
       
       <Route exact path="/course" component={CourseFilterList} />
       <Route path="/course/:courseId" component={CourseInfo} />
+      <Route path="/courseTalk/:courseId" component={CourseTalk} />
       
       <Route exact path="/instructor" component={Instructor} />
       <Route path="/instructor/create" component={CreateCourse} />

@@ -1,10 +1,10 @@
 import React from 'react';
 import CourseFilterList from 'components/CourseFilterList';
+import Box from '@material-ui/core/Box';
 
 const Home = () => {
   return (
     <div>
-      <div>홈입니다</div>
       <CourseFilterList />
     </div>
   );

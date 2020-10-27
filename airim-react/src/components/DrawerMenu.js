@@ -32,8 +32,8 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
-const AfterLogin = ({classes}) => {
-  
+const AfterLogin = () => {
+  const classes = useStyles();
   return (
     <Box pt={6}>
       <Container maxWidth="lg">
@@ -63,8 +63,8 @@ const AfterLogin = ({classes}) => {
   );
 };
 
-const BeforeLogin = ({classes}) => {
-  
+const BeforeLogin = () => {
+  const classes = useStyles();
   return (
     <div>
       <div className={classes.paper}>
@@ -137,7 +137,7 @@ const BeforeLogin = ({classes}) => {
 
 const DrawerMenu = ({ toggleDrawer }) => {
   const classes = useStyles();
-  const isLogin = false;
+  const isLogin = true;
 
   return (
     <div
@@ -146,7 +146,7 @@ const DrawerMenu = ({ toggleDrawer }) => {
       //onClick={toggleDrawer(false)}
       //onKeyDown={toggleDrawer(false)}
     >
-      {isLogin ? <AfterLogin classes={classes}/> : <BeforeLogin classes={classes}/>}
+      {isLogin ? <AfterLogin/> : <BeforeLogin/>}
     </div>
   );
 };

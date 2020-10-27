@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
 
 const TagsBlock = styled.div`
-  //background:red;
   display: flex;
   margin: 1em 0;
   flex-wrap: wrap;
-  //justify-content:space-between;
 `;
 const Tag = styled.div`
   background: #011627;

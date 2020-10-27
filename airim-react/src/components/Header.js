@@ -42,7 +42,7 @@ const TitleBar = ({ title }) => {
   );
 };
 
-const Header = () => {
+const Header = ({}) => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
@@ -76,7 +76,7 @@ const Header = () => {
           edge="start"
           color="inherit"
           aria-label="goBack"
-         // onClick={toggleDrawer(true)}
+         //onClick={() => history.goBack()}
         >
           <ArrowBackIos />
         </IconButton>
