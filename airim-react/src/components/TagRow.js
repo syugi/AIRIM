@@ -4,23 +4,25 @@ import Grid from '@material-ui/core/Grid';
 import styled, { css } from 'styled-components';
 
 const Tag = styled.div`
-  background: #011627;
-  display: flex;
+  
+  background:  #ececec;
+  display: flex;
   align-items: center;
   padding: 0.5em;
-  color: #ffff;
+  color:  #666;
   cursor: pointer;
   margin-right: 0.3em;
   margin-bottom: 0.3em;
 
   &:hover {
-    background: #83949e;
+    // transform: scale(1.1);
   }
 
   ${(props) =>
     props.active &&
     css`
-      background: blue;
+      background:blue;
+      color:#ffff
     `}
 `;
 

@@ -90,7 +90,7 @@ const Instructor = () => {
       
         <Link to={'/instructor/create'}>
           <Button className={classes.button} variant="contained" color="primary">
-            새 강의 등록
+            새 강의 등록
           </Button>
         </Link>
         

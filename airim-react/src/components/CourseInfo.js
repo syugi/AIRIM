@@ -8,6 +8,7 @@ const backImg = 'https://source.unsplash.com/user/erondu/600x400';
 const Layout = styled.div`
  background: ${(props) =>
     !props.backImg ? '#f2f3f5' : 'url(' + props.backImg + ')'};
+padding:1em 0;
 `;
 const CoursHeader = styled.div`
   color: white;

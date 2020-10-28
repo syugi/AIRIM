@@ -3,16 +3,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import CourseInfo from 'components/CourseInfo';
 import CourseForm from 'components/CourseForm';
 import CourseInfoForm from 'components/CourseInfoForm';
+
 
 const useStyles = makeStyles((theme) => ({
   layout: {
@@ -92,12 +93,12 @@ const CreateCourse = () => {
             {activeStep === steps.length ? (
               <Fragment>
                 <Typography variant="h5" gutterBottom>
-                  강의 등록이 완료되었습니다.
+                  강의 등록이 완료되었습니다.
                 </Typography>
                 <Typography variant="subtitle1">
-                  강의 관리 페이지에서 수정가능합니다.
+                  <Link href="/instructor">강의 관리 페이지</Link>에서 확인 가능합니다.
                 </Typography>
-              </Fragment>
+              </Fragment>
             ) : (
               <Fragment>
                 {getStepContent(activeStep)}
@@ -113,7 +114,7 @@ const CreateCourse = () => {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Save': 'Next'}
+                    {activeStep === steps.length - 1 ? 'Save': 'Next'}
                   </Button>
                 </div>
               </Fragment>
