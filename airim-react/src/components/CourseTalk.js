@@ -23,54 +23,72 @@ const chapters = [
     {
       id: 2,
       title:'1-1.파이썬문법',
-      upperTalkId:'1',
+      upperTalkId:1,
       sortSeq :1,
     },
     {
       id: 3,
       title:'1-2.파이썬실습',
-      upperTalkId:'1',
+      upperTalkId:1,
+      sortSeq :2,
+    },
+  {
+      id: 5,
+      title:'1-2-1.개발환경 세팅',
+      upperTalkId:3,
       sortSeq :2,
     },
     {
       id: 4,
       title:'2.머신러닝',
-      upperTalkId:'',
+      upperTalkId:'',
       sortSeq :2,
     }
   ];
- const rows = [];
- 
 
-  chapters.forEach((chapter) => {
-      
-      
-    
-    rows.push(<TreeItem nodeId={chapter.id} label={chapter.title}></TreeItem>);
-  });  
-
-getChildren = (chapterId , chapterTitle) => {
-  const rowChildren = [];
-  const children = chapters.filter(chapter=> chapter.upperTalkId == chapterId);    
-  if(children.length){
-    children.forEach(ch => {
-      //rowChildren.push(<TreeItem>getChildren(ch.id,ch.title)</TreeItem>);
-    });
-  }else{
-    rowChildren.push(<TreeItem nodeId={chapterId} label={chapterTitle}></TreeItem>);
-  }
-  return rowChildren;
+const ChapterRow = ({chapter, children}) => {
+  return (
+    <TreeItem nodeId={chapter.id} label={chapter.title}>
+      {children}
+    </TreeItem>
+  );
 }
 
+const getChapter = () => {
+   return (
+     <>
+     {chapters.map((chapter) => { 
+        return !chapter.upperTalkId  && getChildren(chapter);
+      })}
+     </>
+    );
+  }
+
+const getChildren = (chapter) => {
+  const children = chapters.filter(ch=> ch.upperTalkId === chapter.id); 
+
+  if(children.length){
+    return (
+      <ChapterRow chapter={chapter}>
+        {children.map((ch) => (
+           getChildren(ch)
+        ))}
+      </ChapterRow>
+    );
+  }else{
+     return (<ChapterRow chapter={chapter}/>);
+  }
+}
+  
 const ChapterTree = () => {
   const classes = useStyles();
-  
   
   return (
   <TreeView
       className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
+    
     >
       <TreeItem nodeId="1" label="Applications">
         <TreeItem nodeId="2" label="Calendar" />
@@ -86,7 +104,7 @@ const ChapterTree = () => {
           </TreeItem>
         </TreeItem>
       </TreeItem>
-      {rows}
+      {getChapter()}
     </TreeView>
   );
 }
