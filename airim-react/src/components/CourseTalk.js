@@ -1,19 +1,16 @@
 import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TreeView from '@material-ui/lab/TreeView';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import TreeItem from '@material-ui/lab/TreeItem';
+import ChapterTree from 'components/ChapterTree';
 
 const useStyles = makeStyles({
-  root: {
-    height: 240,
-    flexGrow: 1,
-    maxWidth: 400,
-  },
+  // root: {
+  //   height: 240,
+  //   flexGrow: 1,
+  //   maxWidth: 400,
+  // },
 });
 
-const chapters = [
+const chapterArr = [
     {
       id: 1,
       title:'1.파이썬',
@@ -46,70 +43,21 @@ const chapters = [
     }
   ];
 
-const ChapterRow = ({chapter, children}) => {
-  return (
-    <TreeItem nodeId={chapter.id} label={chapter.title}>
-      {children}
-    </TreeItem>
-  );
-}
-
-
-const getChildren = (chapter) => {
-  const children = chapters.filter(ch=> ch.upperTalkId === chapter.id); 
-
-  if(children.length){
-    return (
-      <ChapterRow chapter={chapter}>
-        {children.map((ch) => (
-           getChildren(ch)
-        ))}
-      </ChapterRow>
-    );
-  }else{
-     return (<ChapterRow chapter={chapter}/>);
-  }
-}
-  
-const Chapter = ({chapters}) => {
-   return (
-     <>
-     {chapters.map((chapter) => { 
-        return !chapter.upperTalkId  && getChildren(chapter);
-      })}
-     </>
-    );
-  }
-
-  
-const ChapterTree = () => {
-  const classes = useStyles();
-  
-  return (
-  <TreeView
-      className={classes.root}
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
-    
-    >
-      {<Chapter chapters={chapters}/>}
-    </TreeView>
-  );
-}
 
 const Talk = () => {
   return (
-    <div></div>
+    <div>ㅇㅇ</div>
   );
 }
 
 const CourseTalk = () => {
   
   const [talks, setTalks] = useState([]);
+  const [chapters, setChapters] = useState(chapterArr);
   
   return (
     <div>
-      <ChapterTree/>
+      <ChapterTree chapters={chapters}/>
       <Talk />
     </div>
   );
