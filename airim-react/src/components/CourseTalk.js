@@ -54,15 +54,6 @@ const ChapterRow = ({chapter, children}) => {
   );
 }
 
-const getChapter = () => {
-   return (
-     <>
-     {chapters.map((chapter) => { 
-        return !chapter.upperTalkId  && getChildren(chapter);
-      })}
-     </>
-    );
-  }
 
 const getChildren = (chapter) => {
   const children = chapters.filter(ch=> ch.upperTalkId === chapter.id); 
@@ -80,6 +71,17 @@ const getChildren = (chapter) => {
   }
 }
   
+const Chapter = ({chapters}) => {
+   return (
+     <>
+     {chapters.map((chapter) => { 
+        return !chapter.upperTalkId  && getChildren(chapter);
+      })}
+     </>
+    );
+  }
+
+  
 const ChapterTree = () => {
   const classes = useStyles();
   
@@ -90,24 +92,17 @@ const ChapterTree = () => {
       defaultExpandIcon={<ChevronRightIcon />}
     
     >
-      <TreeItem nodeId="1" label="Applications">
-        <TreeItem nodeId="2" label="Calendar" />
-        <TreeItem nodeId="3" label="Chrome" />
-        <TreeItem nodeId="4" label="Webstorm" />
-      </TreeItem>
-      <TreeItem nodeId="5" label="Documents">
-        <TreeItem nodeId="10" label="OSS" />
-        <TreeItem nodeId="6" label="Material-UI">
-          <TreeItem nodeId="7" label="src">
-            <TreeItem nodeId="8" label="index.js" />
-            <TreeItem nodeId="9" label="tree-view.js" />
-          </TreeItem>
-        </TreeItem>
-      </TreeItem>
-      {getChapter()}
+      {<Chapter chapters={chapters}/>}
     </TreeView>
   );
 }
+
+const Talk = () => {
+  return (
+    <div></div>
+  );
+}
+
 const CourseTalk = () => {
   
   const [talks, setTalks] = useState([]);
@@ -115,7 +110,7 @@ const CourseTalk = () => {
   return (
     <div>
       <ChapterTree/>
-      <div>톡 페이지 입니다</div>
+      <Talk />
     </div>
   );
 };
