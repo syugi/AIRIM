@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import styled, { css } from 'styled-components';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -29,12 +28,12 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
-  cardtitle:{
-     color: '#ffff',
-     background: '#011627',
-     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-     padding:theme.spacing(1),
-  }
+  cardtitle: {
+    color: '#ffff',
+    background: '#011627',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    padding: theme.spacing(1),
+  },
 }));
 
 const CourseCard = ({ course }) => {
@@ -42,26 +41,24 @@ const CourseCard = ({ course }) => {
   return (
     <Grid item key={course} xs={12} sm={6} md={4}>
       <Card className={classes.card}>
-        <CardActionArea component="a" href={'/course/'+course.id}>
+        <CardActionArea component="a" href={'/course/' + course.id}>
           <CardMedia
             className={classes.cardMedia}
             image={course.image}
             title="Image title"
           >
-            <Typography  className={classes.cardtitle}>
+            <Typography className={classes.cardtitle}>
               {course.tags.map((tag, i) => (i < 2 ? tag + ' ' : ''))}
             </Typography>
           </CardMedia>
-       
-        <CardContent className={classes.cardContent}>
-          <Typography gutterBottom variant="h6" component="h2">
-            {course.title}
-          </Typography>
-          <Typography>
-            {course.instrName}
-          </Typography>
-        </CardContent>
-       </CardActionArea>
+
+          <CardContent className={classes.cardContent}>
+            <Typography gutterBottom variant="h6" component="h2">
+              {course.title}
+            </Typography>
+            <Typography>{course.instrName}</Typography>
+          </CardContent>
+        </CardActionArea>
         <CardActions>
           <Link to={'/course/' + course.id}>
             <Button variant="contained" size="small" color="primary">
@@ -78,7 +75,7 @@ const CourseGrid = ({ courses, tags }) => {
   const rows = [];
   const filterTags = tags.filter((tag) => tag.active);
   const classes = useStyles();
-  
+
   courses.forEach((course) => {
     let isfilter = false;
     if (filterTags.length) {
@@ -98,9 +95,9 @@ const CourseGrid = ({ courses, tags }) => {
   });
 
   return (
-      <Grid className={classes.cardGrid} container spacing={4}>
-        {rows}
-      </Grid>
+    <Grid className={classes.cardGrid} container spacing={4}>
+      {rows}
+    </Grid>
   );
 };
 
@@ -109,47 +106,47 @@ const CourseFilterList = () => {
     {
       id: 1,
       title: '파이썬 자연어처리 배우기',
-      instrName:'에이림/이재화강사님',
-      image: 'https://source.unsplash.com/user/ilyapavlov/600x400',
+      instrName: '에이림/이재화강사님',
+      image: 'https://source.unsplash.com/user/ilyapavlov/600x400',
       tags: ['#파이썬', '#자연어처리'],
       lineIntro1: '#텐서플로 200% 활용',
-    lineIntro2: '#직관적인  언어PYTHON',
-    lineIntro3: '인공지능의 시작과 끝맺음이 있는 공간',
-    desc:
-      '인공지능의 시작과 끝맺음이 있는 공간 여기는 소개글을 쓰는공간입니다.앞에 두칸은 띄고 시작합니다.최대4줄까주요지 보여줍니다',
-    estmtTime: '2시간 31분',
-    instrDesc: '우렁이는 귀엽고, 착하고, 스마트하고 치킨을 좋아합니다!',
-    instrName: '에이림 / 이재화 강사님',
+      lineIntro2: '#직관적인  언어PYTHON',
+      lineIntro3: '인공지능의 시작과 끝맺음이 있는 공간',
+      desc:
+        '인공지능의 시작과 끝맺음이 있는 공간 여기는 소개글을 쓰는공간입니다.앞에 두칸은 띄고 시작합니다.최대4줄까주요지 보여줍니다',
+      estmtTime: '2시간 31분',
+      instrDesc: '우렁이는 귀엽고, 착하고, 스마트하고 치킨을 좋아합니다!',
+      instrName: '에이림 / 이재화 강사님',
     },
     {
       id: 2,
       title: 'R머신러닝 자연어처리 배우기',
-      instrName:'에이림/이재화강사님',
+      instrName: '에이림/이재화강사님',
       image: 'https://source.unsplash.com/user/erondu/600x400',
       tags: ['#R머신러닝', '#자연어처리'],
       lineIntro1: '#텐서플로 200% 활용',
-    lineIntro2: '#직관적인  언어PYTHON',
-    lineIntro3: '인공지능의 시작과 끝맺음이 있는 공간',
-    desc:
-      '인공지능의 시작과 끝맺음이 있는 공간 여기는 소개글을 쓰는공간입니다.앞에 두칸은 띄고 시작합니다.최대4줄까주요지 보여줍니다',
-    estmtTime: '2시간 31분',
-    instrDesc: '우렁이는 귀엽고, 착하고, 스마트하고 치킨을 좋아합니다!',
-    instrName: '에이림 / 이재화 강사님',
+      lineIntro2: '#직관적인  언어PYTHON',
+      lineIntro3: '인공지능의 시작과 끝맺음이 있는 공간',
+      desc:
+        '인공지능의 시작과 끝맺음이 있는 공간 여기는 소개글을 쓰는공간입니다.앞에 두칸은 띄고 시작합니다.최대4줄까주요지 보여줍니다',
+      estmtTime: '2시간 31분',
+      instrDesc: '우렁이는 귀엽고, 착하고, 스마트하고 치킨을 좋아합니다!',
+      instrName: '에이림 / 이재화 강사님',
     },
     {
       id: 3,
       title: '파이썬 텐서플로우 배우기',
-      instrName:'에이림/이재화강사님',
+      instrName: '에이림/이재화강사님',
       image: 'https://source.unsplash.com/user/_vickyreyes/600x400',
       tags: ['#파이썬', '#텐서플로우', '#이거이거'],
       lineIntro1: '#텐서플로 200% 활용',
-    lineIntro2: '#직관적인  언어PYTHON',
-    lineIntro3: '인공지능의 시작과 끝맺음이 있는 공간',
-    desc:
-      '인공지능의 시작과 끝맺음이 있는 공간 여기는 소개글을 쓰는공간입니다.앞에 두칸은 띄고 시작합니다.최대4줄까주요지 보여줍니다',
-    estmtTime: '2시간 31분',
-    instrDesc: '우렁이는 귀엽고, 착하고, 스마트하고 치킨을 좋아합니다!',
-    instrName: '에이림 / 이재화 강사님',
+      lineIntro2: '#직관적인  언어PYTHON',
+      lineIntro3: '인공지능의 시작과 끝맺음이 있는 공간',
+      desc:
+        '인공지능의 시작과 끝맺음이 있는 공간 여기는 소개글을 쓰는공간입니다.앞에 두칸은 띄고 시작합니다.최대4줄까주요지 보여줍니다',
+      estmtTime: '2시간 31분',
+      instrDesc: '우렁이는 귀엽고, 착하고, 스마트하고 치킨을 좋아합니다!',
+      instrName: '에이림 / 이재화 강사님',
     },
   ];
 
@@ -176,11 +173,11 @@ const CourseFilterList = () => {
       ),
     );
   };
-   
+
   const classes = useStyles();
-  
+
   return (
-     <Container maxWidth="md">
+    <Container maxWidth="md">
       <TagRow tags={tags} onClick={handleTagChange} />
       <CourseGrid courses={courses} tags={tags} />
     </Container>

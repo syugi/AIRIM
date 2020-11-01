@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -17,10 +15,10 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     width: 260,
   },
-  box : {
+  box: {
     background: '#e5e8ea',
   },
-  text : {
+  text: {
     fontWeight: 'bold',
   },
   submit: {
@@ -38,7 +36,7 @@ const AfterLogin = () => {
     <Box pt={6}>
       <Container maxWidth="lg">
         <Box className={classes.box} px={2} py={5} my={4}>
-          <Typography className={classes.text} variant="h5" >
+          <Typography className={classes.text} variant="h5">
             에이림님
             <br />
             환영합니다.
@@ -137,7 +135,7 @@ const BeforeLogin = () => {
 
 const DrawerMenu = ({ toggleDrawer }) => {
   const classes = useStyles();
-  const isLogin = true;
+  const isLogin = true;
 
   return (
     <div
@@ -146,7 +144,7 @@ const DrawerMenu = ({ toggleDrawer }) => {
       //onClick={toggleDrawer(false)}
       //onKeyDown={toggleDrawer(false)}
     >
-      {isLogin ? <AfterLogin/> : <BeforeLogin/>}
+      {isLogin ? <AfterLogin /> : <BeforeLogin />}
     </div>
   );
 };

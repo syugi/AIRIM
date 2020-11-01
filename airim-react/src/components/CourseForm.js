@@ -1,4 +1,4 @@
-import React,{useState,Fragment} from 'react';
+import React, { useState, Fragment } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -16,19 +16,20 @@ const CourseSaveForm = () => {
     { id: 8, text: '#이거이거', active: false },
   ];
   const [tags, setTags] = useState(tagsArr);
-  
+
   const handleTagChange = (selectTag) => {
     setTags(
-      tags.map(
-        (tag) =>
-          tag.text === selectTag ? { ...tag, active: !tag.active } : tag,
+      tags.map((tag) =>
+        tag.text === selectTag ? { ...tag, active: !tag.active } : tag,
       ),
     );
   };
-  
+
   return (
-   <Fragment>
-      <Typography variant="h6" gutterBottom>강의 정보</Typography>
+    <Fragment>
+      <Typography variant="h6" gutterBottom>
+        강의 정보
+      </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
@@ -37,7 +38,7 @@ const CourseSaveForm = () => {
             name="title"
             label="강의 제목"
             fullWidth
-            autoComplete="course title"
+            autoComplete="course title"
           />
         </Grid>
         <Grid item xs={12}>
@@ -45,14 +46,14 @@ const CourseSaveForm = () => {
             required
             id="instrName"
             name="instrName"
-            label="강사 명"
+            label="강사 명"
             fullWidth
-            //placeholder=""
-            autoComplete="instructor name"
+            //placeholder=""
+            autoComplete="instructor name"
           />
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h6" >카테고리</Typography>
+          <Typography variant="h6">카테고리</Typography>
           <TagRow tags={tags} onClick={handleTagChange} />
         </Grid>
       </Grid>
