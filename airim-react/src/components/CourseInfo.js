@@ -118,7 +118,7 @@ const CourseInfo = ({ match }) => {
             <div>{course.instrDesc}</div>
           </p>
           <div className="center">
-            <Link to={'/CourseTalk/' + course.id}>
+            <Link to={'/coursechat/' + course.id}>
               <Button variant="contained" color="primary">
                 학습하기
               </Button>

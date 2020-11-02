@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EditTalk = () => {
+const EditChat = () => {
   return (
     <div>
       <div>톡 수정 페이지 입니다</div>
@@ -8,4 +8,4 @@ const EditTalk = () => {
   );
 };
 
-export default EditTalk;
+export default EditChat;

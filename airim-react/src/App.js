@@ -8,7 +8,8 @@ import reset from 'styles/reset.scss';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    // background:  #011627;
+     //background:  #011627,
+      min-height:800px;
   }
 `;
 

@@ -3,11 +3,11 @@ import { Route, Switch } from 'react-router-dom';
 import Home from 'components/Home';
 import CourseFilterList from 'components/CourseFilterList';
 import CourseInfo from 'components/CourseInfo';
-import CourseTalk from 'components/CourseTalk';
+import CourseChat from 'components/CourseChat';
 import Instructor from 'components/Instructor';
 import CreateCourse from 'components/CreateCourse';
 import EditCourse from 'components/EditCourse';
-import EditTalk from 'components/EditTalk';
+import EditChat from 'components/EditChat';
 
 const Main = () => (
   <div>
@@ -16,12 +16,12 @@ const Main = () => (
       
       <Route exact path="/course" component={CourseFilterList} />
       <Route path="/course/:courseId" component={CourseInfo} />
-      <Route path="/courseTalk/:courseId" component={CourseTalk} />
+      <Route path="/coursechat/:courseId" component={CourseChat} />
       
       <Route exact path="/instructor" component={Instructor} />
       <Route path="/instructor/create" component={CreateCourse} />
       <Route path="/instructor/course" component={EditCourse} />
-      <Route path="/instructor/talk" component={EditTalk} />
+      <Route path="/instructor/chat" component={EditChat} />
       <Route
         // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
         render={({ location }) => (
