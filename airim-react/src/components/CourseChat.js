@@ -49,6 +49,10 @@ const useStyles = makeStyles({
     minHeight:'600px',
     padding:'10px',
     paddingTop:'30px',
+
+  },
+  chatRowList:{
+   
   },
   chatRow:{
     paddingBottom: '15px',
@@ -98,8 +102,8 @@ const useStyles = makeStyles({
   addChatForm:{
     backgroundColor: '#eceff1',
     // borderRadius: '5px',
-    position:'absolute',
-    bottom: 0,
+    // position:'absolute',
+    // bottom: 0,
    // left: 0;
     '& input' : {
         width:'100%',
@@ -180,7 +184,7 @@ const ChatContainer = () => {
                                                            
   return (
     <Container maxWidth="xs" className={classes.container}>
-       <div
+       <div className={classes.chatRowList}
            // className="scroll"
            // ref={this.chatMessageListRef}
         >
