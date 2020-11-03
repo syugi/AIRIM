@@ -47,8 +47,8 @@ const useStyles = makeStyles({
   container: {
     background:'blue', 
     minHeight:'600px',
-    padding:'10px',
-    paddingTop:'30px',
+    // padding:'10px',
+    // paddingTop:'30px',
 
   },
   chatRowList:{
@@ -97,7 +97,12 @@ const useStyles = makeStyles({
      // margin:'0px 70px 15px',
     // display: table-cell;
     // vertical-align: middle;
+    
     },
+  
+  // right:{
+  // float:'right',
+  // },
   
   addChatForm:{
     backgroundColor: '#eceff1',
@@ -120,6 +125,43 @@ const useStyles = makeStyles({
   }
 });
 
+const RightBubbleRow = ({chat}) => {
+  const classes = useStyles();
+  return (
+  <div className={classes.bubbleRow}>
+     <div>
+       <div className={classes.talker}>
+         {chat.talker}
+       </div>
+       <div className={classes.msg}>
+         {chat.content}
+       </div>
+     </div>
+      <div className={classes.talkerImg}>
+        <img  src="https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80" alt="" />
+     </div>
+   </div>
+  );
+}
+
+const LeftBubbleRow = ({chat}) => {
+  const classes = useStyles();
+  return (
+  <div className={classes.bubbleRow}>
+     <div className={classes.talkerImg}>
+        <img  src="https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80" alt="" />
+     </div>
+     <div>
+       <div className={classes.talker}>
+         {chat.talker}
+       </div>
+       <div className={classes.msg}>
+         {chat.content}
+       </div>
+     </div>
+   </div>
+  );
+}
 
 const ChatContainer = () => {
   const classes = useStyles();
@@ -154,19 +196,7 @@ const ChatContainer = () => {
               <>
               {chat.talker?
                (
-                <div className={classes.bubbleRow}>
-                 <div className={classes.talkerImg}>
-                    <img  src="https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80" alt="" />
-                 </div>
-                 <div>
-                   <div className={classes.talker}>
-                     {chat.talker}
-                   </div>
-                   <div className={classes.msg}>
-                     {chat.content}
-                   </div>
-                 </div>
-               </div>
+                <RightBubbleRow chat={chat}/>
                ):(
                <div className={classes.textRow}>
                  {chat.content}
