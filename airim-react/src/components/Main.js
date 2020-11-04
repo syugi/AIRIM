@@ -5,9 +5,7 @@ import CourseFilterList from 'components/CourseFilterList';
 import CourseInfo from 'components/CourseInfo';
 import CourseChat from 'components/CourseChat';
 import Instructor from 'components/Instructor';
-import CreateCourse from 'components/CreateCourse';
 import EditCourse from 'components/EditCourse';
-import EditChat from 'components/EditChat';
 
 const Main = () => (
   <div>
@@ -19,9 +17,7 @@ const Main = () => (
       <Route path="/coursechat/:courseId" component={CourseChat} />
       
       <Route exact path="/instructor" component={Instructor} />
-      <Route path="/instructor/create" component={CreateCourse} />
-      <Route path="/instructor/course" component={EditCourse} />
-      <Route path="/instructor/chat" component={EditChat} />
+      <Route path="/editcourse/:courseId" component={EditCourse} />
       <Route
         // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
         render={({ location }) => (

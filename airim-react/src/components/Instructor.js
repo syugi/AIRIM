@@ -30,7 +30,7 @@ const CourseList = ({ course }) => {
   const classes = useStyles();
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href={'/EditCourse/' + course.id}>
+      <CardActionArea component="a" href={'/editcourse/' + course.id}>
         <Card className={classes.card}>
           <Hidden xsDown>
             <CardMedia
@@ -51,7 +51,7 @@ const CourseList = ({ course }) => {
                 description{course.description}
               </Typography>
               <Typography variant="subtitle1" color="primary">
-                Continue reading...
+                <Link to={'/coursechat/' + course.id+'?edit=true'}>톡수정</Link>
               </Typography>
             </CardContent>
           </div>
@@ -90,7 +90,7 @@ const Instructor = () => {
   const classes = useStyles();
   return (
     <Container maxWidth="md">
-      <Link to={'/instructor/create'}>
+      <Link to={'/editcourse/new'}>
         <Button className={classes.button} variant="contained" color="primary">
           새 강의 등록
         </Button>
