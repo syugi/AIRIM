@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import ChatList from 'components/ChatList';
+import Chip from '@material-ui/core/Chip';
+import FaceIcon from '@material-ui/icons/Face';
 
 const useStyles = makeStyles({
   wrap:{
@@ -15,6 +17,15 @@ const useStyles = makeStyles({
      background:'#eae8ed', 
     padding:0,
     
+  },
+  chatInputForm:{
+    backgroundColor: '#fff',
+  },
+  inputTypeList:{
+    padding:'0.3em',
+  },
+  chip: {
+    margin:'0.2em',
   },
   chatInput:{
     display:'flex',
@@ -43,18 +54,57 @@ const useStyles = makeStyles({
 
 const ChatAddForm = ({onAddChat}) => {
   const classes = useStyles();
+  const [types, setTypes] = useState([
+    { name: '챕터', code:'chapter' ,active: false },
+    { name: '메세지', code:'msg' ,active: true},
+    { name: '가운데텍스트', code:'text' ,active: false },
+    { name: '이미지' , code:'img' ,active: false},
+    { name: '유튜브' , code:'youtube' ,active: false},
+  ]);
+  
+  const handleClick = (selectType) => {
+    console.info('You clicked the Chip.');
+    setTypes(
+      types.map(
+        (type) =>
+          type.code === selectType 
+         ? { ...type, active: true } 
+         : { ...type, active: false },
+      ),
+    );
+  };
+  
   return (
-       <form onSubmit={onAddChat}  className={classes.chatInput}>
-          <input
-              type="text"
-             // onChange={(e) =>
-             //     this.setState({
-             //         txtValue: e.target.value
-             //     })
-             // }
-            //  value={this.state.txtValue}
-          />
-          <Button variant="contained" color="primary">전송</Button>
+       <form onSubmit={onAddChat}  className={classes.chatInputForm}>
+          <div className={classes.inputTypeList}>
+            {types.map((data) => {
+                let icon;
+                if (data.code === 'chapter') {
+                  icon = <FaceIcon />;
+                }
+                return (
+                      <Chip  
+                        icon={icon}
+                        label={data.name}
+                        className={classes.chip}
+                        onClick={() => handleClick(data.code)}
+                        color={data.active ? 'primary' : ''}
+                      />
+                );
+              })}
+          </div>
+          <div className={classes.chatInput}>
+            <input
+                type="text"
+               // onChange={(e) =>
+               //     this.setState({
+               //         txtValue: e.target.value
+               //     })
+               // }
+              //  value={this.state.txtValue}
+            />
+            <Button variant="contained" color="primary">전송</Button>
+          </div>
         </form> 
     )
   };
