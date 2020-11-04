@@ -40,7 +40,7 @@ const useStyles = makeStyles({
   },
   
   
-  msg :{
+  bubble :{
     //font-size: $regularFontSize;
     // max-width: 300px;
     // height: 30px;
@@ -63,49 +63,48 @@ const useStyles = makeStyles({
   // },
 });
 
-const RightBubbleRow = ({classes, chat}) => {
-  return (
-  <>
-   {/* <div className={classes.bubbleRow}> */}
-     <div>
-       <div className={classes.talker}>
-         {chat.talker}
-       </div>
-       <div className={classes.msg}>
-         {chat.content}
-       </div>
-     </div>
-      <div className={classes.talkerImg}>
-        <img  src="https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80" alt="" />
-     </div>
-   </>
-  );
-}
-
-const LeftBubbleRow = ({classes, chat}) => {
-  
-  return (
-  <>
-     <div className={classes.talkerImg}>
-        <img  src="https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80" alt="" />
-     </div>
-     <div>
-       <div className={classes.talker}>
-         {chat.talker}
-       </div>
-       <div className={classes.msg}>
-         {chat.content}
-       </div>
-     </div>
-   </>
-  );
-}
-
 const BubbleRow = ({chat}) => {
   
   const props = { position: chat.position , color:chat.color };
   const classes = useStyles(props);
   
+  const RightBubbleRow = ({chat}) => {
+    return (
+    <>
+       <div>
+         <div className={classes.talker}>
+           {chat.talker}
+         </div>
+         <div className={classes.bubble}>
+           {chat.content}
+         </div>
+       </div>
+        <div className={classes.talkerImg}>
+          <img  src={chat.talkerImg} alt="" />
+       </div>
+     </>
+    );
+  }
+
+  const LeftBubbleRow = ({chat}) => {
+
+    return (
+    <>
+       <div className={classes.talkerImg}>
+          <img  src={chat.talkerImg} alt="" />
+       </div>
+       <div>
+         <div className={classes.talker}>
+           {chat.talker}
+         </div>
+         <div className={classes.bubble}>
+           {chat.content}
+         </div>
+       </div>
+     </>
+    );
+  }
+
   return (
     <div className={classes.bubbleRow}>
       { props.position === 'right' 
@@ -132,7 +131,7 @@ const ChatRow = ({ chat, idx }) => {
     );
 }
 
-const ChatList = ({chats}) => {
+const ChatList = ({chats, isEdit}) => {
    const classes = useStyles();
   
    const list = chats.map((chat, idx) =>

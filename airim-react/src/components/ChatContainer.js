@@ -88,7 +88,7 @@ const ChatBlock = ({chats,isEdit}) => {
                                                            
   return (
     <Container maxWidth="xs" className={classes.container}>
-      <ChatList chats={chats} />
+      <ChatList chats={chats} isEdit={isEdit}/>
       {isEdit && <ChatAddForm onAddChat={onAddChat}/>}
     </Container>
   );
