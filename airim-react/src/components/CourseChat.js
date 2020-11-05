@@ -63,8 +63,44 @@ const useStyles = makeStyles({
 });
 
 const CourseChat = ({ location }) => {
-  const [chats, setChats] = useState(chatsArr);
   const classes = useStyles();
+  const [chats, setChats] = useState(chatsArr);
+  const [inputText, setInputText] = useState("");
+  const [selectType, setSelectType] = useState(['msg']);
+  
+  const onAddChat = (e) => {
+        // e.preventDefault();
+        // //const { txtValue, chatMessageLists } = this.state;
+       
+       // if (txtValue) {
+            const id = chats[chats.length - 1].id + 1;
+            const newChat = {
+                id,
+                talker:'테스트',
+                type:selectType,
+                position:'right',
+                content:inputText,
+            };
+
+            setChats(
+              chats.concat([newChat]),
+            );
+            setInputText(
+              ""
+            );
+          
+            // this.setState({
+            //     chatMessageLists: chatMessageLists.concat([newMessage]),
+            //     txtValue: ""
+            // },
+            //     () => this.chatMessageListRef.current.scrollBy(0, 500)
+            // );
+       // }
+    }
+  
+  const onTextChange = (e) => {
+    setInputText(e.target.value);
+  }
   
   const query = qs.parse(location.search, {
     ignoreQueryPrefix: true
@@ -72,7 +108,7 @@ const CourseChat = ({ location }) => {
   const isEdit = query.edit === 'true'; 
   
   return (
-    <ChatContainer chats={chats} isEdit={isEdit}/>
+    <ChatContainer chats={chats} isEdit={isEdit} onAddChat={onAddChat} inputText={inputText} onTextChange={onTextChange}/>
   );
 };
 

@@ -1,11 +1,13 @@
 import React,{useState} from 'react';
-import { Container, Typography } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+import { Container, Typography ,Button, Grid , Chip, Avatar} from "@material-ui/core"
+import SmsIcon from '@material-ui/icons/Sms';
+import PhotoIcon from '@material-ui/icons/Photo';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import TitleIcon from '@material-ui/icons/Title';
+import TextFormatIcon from '@material-ui/icons/TextFormat';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import ChatList from 'components/ChatList';
-import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
 
 const useStyles = makeStyles({
   wrap:{
@@ -21,11 +23,21 @@ const useStyles = makeStyles({
   chatInputForm:{
     backgroundColor: '#fff',
   },
-  inputTypeList:{
+  talkerList:{
+    display:'flex',
+  },
+  talker:{
+    margin:'0.3em',
+  //   borderWidth: '4px',
+  // borderColor: '#3182ce',
+  // borderRadius: '9999px',
+  },
+  typeList:{
     padding:'0.3em',
   },
   chip: {
     margin:'0.2em',
+    padding:'0.2em',
   },
   chatInput:{
     display:'flex',
@@ -52,94 +64,116 @@ const useStyles = makeStyles({
   }
 });
 
-const ChatAddForm = ({onAddChat}) => {
+const TypeList = ({types,onClick}) => {
   const classes = useStyles();
+  return (
+      <div className={classes.typeList}>
+          {types.map((data) => {
+              let icon;
+              if (data.code === 'img') {
+                icon = <PhotoIcon />;
+              }else if(data.code === 'msg') {
+                icon = <ChatBubbleIcon />;
+              }else if(data.code === 'text') {
+                icon = <TextFormatIcon />;
+              }else if(data.code === 'youtube') {
+                icon = <YouTubeIcon />;
+              }else if(data.code === 'chapter') {
+                 icon = <TitleIcon />;
+              }         
+
+              return (
+                    <Chip  
+                      size="small" 
+                      icon={icon}
+                      label={data.name}
+                      className={classes.chip}
+                      onClick={() => onClick(data.code)}
+                      color={data.active ? 'primary' : ''}
+                    />
+              );
+            })}
+      </div>
+  );
+}
+
+const TalkerList = () => {
+  const classes = useStyles();
+  const [talkers, setTalkers] = useState([
+    { 
+      id:1, 
+      name: '선생님' ,  
+      imgPath: "https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
+      active:true,
+    },
+    { 
+      id:2, 
+      name: '학생' ,  
+      imgPath: "https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
+      active:false,
+    },
+  ]);
+  
+  return (
+    <div className={classes.talkerList}>
+     {talkers.map((data) => 
+        <Avatar className={classes.talker}>A</Avatar>
+      )}
+    </div>
+  );
+}
+
+const ChatAddForm = ({types, selectType, onTypeClick, onAddChat, inputText, onTextChange}) => {
+  const classes = useStyles();
+  
+  return (
+       <form onSubmit={onAddChat}  className={classes.chatInputForm}>
+          <TalkerList />
+          <TypeList types={types} onClick={onTypeClick}/>
+          <div className={classes.chatInput}>
+            <input
+                type="text"
+                onChange={onTextChange}
+               // onChange={(e) =>
+               //     this.setState({
+               //         txtValue: e.target.value
+               //     })
+               // }
+                value={inputText}
+            />
+            <Button variant="contained" color="primary" onClick={onAddChat}>전송</Button>
+          </div>
+        </form> 
+    )
+  };
+
+const ChatBlock = ({chats,isEdit,onAddChat,inputText,onTextChange}) => {
+  const classes = useStyles();
+  
   const [types, setTypes] = useState([
     { name: '챕터', code:'chapter' ,active: false },
     { name: '메세지', code:'msg' ,active: true},
-    { name: '가운데텍스트', code:'text' ,active: false },
+    { name: '텍스트', code:'text' ,active: false },
     { name: '이미지' , code:'img' ,active: false},
     { name: '유튜브' , code:'youtube' ,active: false},
   ]);
   
-  const handleClick = (selectType) => {
-    console.info('You clicked the Chip.');
+  const onTypeClick = (typeCode) => {
     setTypes(
       types.map(
         (type) =>
-          type.code === selectType 
+          type.code === typeCode 
          ? { ...type, active: true } 
          : { ...type, active: false },
       ),
     );
   };
   
-  return (
-       <form onSubmit={onAddChat}  className={classes.chatInputForm}>
-          <div className={classes.inputTypeList}>
-            {types.map((data) => {
-                let icon;
-                if (data.code === 'chapter') {
-                  icon = <FaceIcon />;
-                }
-                return (
-                      <Chip  
-                        icon={icon}
-                        label={data.name}
-                        className={classes.chip}
-                        onClick={() => handleClick(data.code)}
-                        color={data.active ? 'primary' : ''}
-                      />
-                );
-              })}
-          </div>
-          <div className={classes.chatInput}>
-            <input
-                type="text"
-               // onChange={(e) =>
-               //     this.setState({
-               //         txtValue: e.target.value
-               //     })
-               // }
-              //  value={this.state.txtValue}
-            />
-            <Button variant="contained" color="primary">전송</Button>
-          </div>
-        </form> 
-    )
-  };
-
-const ChatBlock = ({chats,isEdit}) => {
-  const classes = useStyles();
-  const [txtValue, setTxtValue] = useState("");
-  
-  const onAddChat = (e) => {
-        // e.preventDefault();
-        // //const { txtValue, chatMessageLists } = this.state;
-
-        // if (txtValue) {
-        //     const id = chatList[chatList.length - 1].id + 1;
-        //     const newChat = {
-        //         id,
-        // talker:'테스트',
-        //         type:'msg',
-        // position:'right',
-        //         content:'Test!!!!'
-        //     };
-
-        //     // this.setState({
-        //     //     chatMessageLists: chatMessageLists.concat([newMessage]),
-        //     //     txtValue: ""
-        //     // },
-        //     //     () => this.chatMessageListRef.current.scrollBy(0, 500)
-        //     // );
-        // }
-    }
-                                                           
+                                                        
   return (
     <Container maxWidth="xs" className={classes.container}>
       <ChatList chats={chats} isEdit={isEdit}/>
-      {isEdit && <ChatAddForm onAddChat={onAddChat}/>}
+      {isEdit && <ChatAddForm types={types} onTypeClick={onTypeClick} onAddChat={onAddChat} inputText={inputText}  onTextChange={onTextChange}/>} 
     </Container>
   );
 }
@@ -151,7 +185,7 @@ const ChapterList = ({chapters}) => {
   );
 }
 
-const ChatContainer = ({chats,isEdit}) => {
+const ChatContainer = ({chats,isEdit,onAddChat,inputText,onTextChange}) => {
   const classes = useStyles();
   
   const chapters = chats.filter(chat => chat.type === 'chapter');
@@ -159,7 +193,7 @@ const ChatContainer = ({chats,isEdit}) => {
   return (
     <div className={classes.wrap}>
       <ChapterList chapters={chapters} isEdit={isEdit}/>
-      <ChatBlock chats={chats} isEdit={isEdit}/>
+      <ChatBlock chats={chats} isEdit={isEdit} onAddChat={onAddChat} inputText={inputText}  onTextChange={onTextChange}/>
     </div>
   );
 };
