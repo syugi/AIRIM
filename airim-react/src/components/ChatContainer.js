@@ -1,12 +1,13 @@
 import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Typography ,Button, Grid , Chip, Avatar} from "@material-ui/core"
+import { Container, Typography ,Button, Grid , Chip, Avatar, IconButton} from "@material-ui/core"
 import SmsIcon from '@material-ui/icons/Sms';
 import PhotoIcon from '@material-ui/icons/Photo';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import TitleIcon from '@material-ui/icons/Title';
 import TextFormatIcon from '@material-ui/icons/TextFormat';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import AddIcon from '@material-ui/icons/Add';
 import ChatList from 'components/ChatList';
 
 const useStyles = makeStyles({
@@ -15,7 +16,7 @@ const useStyles = makeStyles({
   },
   container: {
     // padding:'10px',
-    // paddingTop:'30px',
+    // paddingTop:'30px', 
      background:'#eae8ed', 
     padding:0,
     
@@ -27,18 +28,17 @@ const useStyles = makeStyles({
     display:'flex',
   },
   talker:{
-    margin:'0.3em',
-  //   borderWidth: '4px',
-  // borderColor: '#3182ce',
-  // borderRadius: '9999px',
+    margin:'0.5em', 
+  }, 
+  avatar:{
+      // border:'4px blue solid',  
   },
   typeList:{
-    padding:'0.3em',
+    '& > *': {
+      margin:'0.3em',
+    },
   },
-  chip: {
-    margin:'0.2em',
-    padding:'0.2em',
-  },
+  
   chatInput:{
     display:'flex',
     backgroundColor: '#fff',
@@ -87,7 +87,7 @@ const TypeList = ({types,onClick}) => {
                       size="small" 
                       icon={icon}
                       label={data.name}
-                      className={classes.chip}
+                      //className={classes.chip}
                       onClick={() => onClick(data.code)}
                       color={data.active ? 'primary' : ''}
                     />
@@ -117,8 +117,16 @@ const TalkerList = () => {
   return (
     <div className={classes.talkerList}>
      {talkers.map((data) => 
-        <Avatar className={classes.talker}>A</Avatar>
-      )}
+          <div  className={classes.talker}>
+              <Avatar className={classes.avatar} onClick={()=>alert('a')}>A</Avatar>
+              <Typography variant="caption" display="block" align="center">
+                {data.name}
+              </Typography>
+          </div>
+      )} 
+      <div className={classes.talker}> 
+        <Avatar className={classes.avatar}><AddIcon /></Avatar>
+      </div>
     </div>
   );
 }
