@@ -1,114 +1,208 @@
 import React,{useState} from 'react';
-import { Container, Typography } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import ChatContainer from 'components/ChatContainer'; 
-import qs from 'qs';
-// import reset from 'styles/chat.scss';
-
-const chatsArr = [
-  {
-     id:0,
-    talker:'',
-    type:'chapter',
-    position:'center',
-    content:'1.소개',
-    talkerImg: "https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
-  },
-  {
-     id:1,
-    talker:'선생님',
-    type:'msg',
-    position:'left',
-    content:'안녕하세요,',
-    talkerImg: "https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
-  },
-  {
-     id:2,
-  talker:'선생님',
-  type:'msg',
-    position:'left',
-  content:'여기 오신것을 환영합니다',
-    talkerImg: "https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
-  },
-  {
-     id:3,
-    talker:'학생',
-    type:'msg',
-    position:'right',
-    color:'yellow',
-    content:'잘부탁드립니다',
-    talkerImg: "https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
-  },
-  {
-     id:4,
-  talker:'',
-  type:'notice',
-    position:'center',
-  content:'이제시작합니다!',
-    talkerImg: "https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
-  },
-  {
-     id:5,
-  talker:'',
-  type:'chapter',
-    position:'center',
-  content:'2.강의',
-    talkerImg: "https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
-  },
-] 
+import { Container, Typography ,Button, Grid , Chip, Avatar, IconButton} from "@material-ui/core"
+import SmsIcon from '@material-ui/icons/Sms';
+import PhotoIcon from '@material-ui/icons/Photo';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import TitleIcon from '@material-ui/icons/Title';
+import TextFormatIcon from '@material-ui/icons/TextFormat';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import AddIcon from '@material-ui/icons/Add';
+import ChatList from 'components/ChatList';
 
 const useStyles = makeStyles({
+  wrap:{
+    display:'flex',
+  },
+  container: {
+    // padding:'10px',
+    // paddingTop:'30px', 
+     background:'#eae8ed', 
+    padding:0,
+    
+  },
+  chatInputForm:{
+    backgroundColor: '#fff',
+  },
+  talkerList:{
+    display:'flex',
+  },
+  talker:{
+    margin:'0.5em', 
+  }, 
+  avatar:{
+      // border:'4px blue solid',  
+  },
+  typeList:{
+    '& > *': {
+      margin:'0.3em',
+    },
+  },
+  
+  chatInput:{
+    display:'flex',
+    backgroundColor: '#fff',
+    // borderRadius: '5px',
+    // position:'absolute',
+    // bottom: 0,
+   // left: 0;
+   
+    '& input' : {
+         width:'100%',
+        // height:'100%',
+         padding: '0 5px',
+         border: 0,
+         outline: 'none',
+        backgroundColor: '#fff',
+    },
+    '& button':{
+      borderRadius : 0,
+      // width:'100%',
+      // float: 'right',
+    }
+    
+  }
 });
 
-const CourseChat = ({ location }) => {
+const TypeList = ({types,onClick}) => {
   const classes = useStyles();
-  const [chats, setChats] = useState(chatsArr);
-  const [inputText, setInputText] = useState("");
-  const [selectType, setSelectType] = useState(['msg']);
-  
-  const onAddChat = (e) => {
-        // e.preventDefault();
-        // //const { txtValue, chatMessageLists } = this.state;
-       
-       // if (txtValue) {
-            const id = chats[chats.length - 1].id + 1;
-            const newChat = {
-                id,
-                talker:'테스트',
-                type:selectType,
-                position:'right',
-                content:inputText,
-            };
+  return (
+      <div className={classes.typeList}>
+          {types.map((data) => {
+              let icon;
+              if (data.code === 'img') {
+                icon = <PhotoIcon />;
+              }else if(data.code === 'msg') {
+                icon = <ChatBubbleIcon />;
+              }else if(data.code === 'text') {
+                icon = <TextFormatIcon />;
+              }else if(data.code === 'youtube') {
+                icon = <YouTubeIcon />;
+              }else if(data.code === 'chapter') {
+                 icon = <TitleIcon />;
+              }         
 
-            setChats(
-              chats.concat([newChat]),
-            );
-            setInputText(
-              ""
-            );
-          
-            // this.setState({
-            //     chatMessageLists: chatMessageLists.concat([newMessage]),
-            //     txtValue: ""
-            // },
-            //     () => this.chatMessageListRef.current.scrollBy(0, 500)
-            // );
-       // }
-    }
-  
-  const onTextChange = (e) => {
-    setInputText(e.target.value);
-  }
-  
-  const query = qs.parse(location.search, {
-    ignoreQueryPrefix: true
-  });
-  const isEdit = query.edit === 'true'; 
+              return (
+                    <Chip  
+                      size="small" 
+                      icon={icon}
+                      label={data.name}
+                      //className={classes.chip}
+                      onClick={() => onClick(data.code)}
+                      color={data.active ? 'primary' : ''}
+                    />
+              );
+            })}
+      </div>
+  );
+}
+
+const TalkerList = () => {
+  const classes = useStyles();
+  const [talkers, setTalkers] = useState([
+    { 
+      id:1, 
+      name: '선생님' ,  
+      imgPath: "https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
+      active:true,
+    },
+    { 
+      id:2, 
+      name: '학생' ,  
+      imgPath: "https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
+      active:false,
+    },
+  ]);
   
   return (
-    <ChatContainer chats={chats} isEdit={isEdit} onAddChat={onAddChat} inputText={inputText} onTextChange={onTextChange}/>
+    <div className={classes.talkerList}>
+     {talkers.map((data) => 
+          <div  className={classes.talker}>
+              <Avatar className={classes.avatar} onClick={()=>alert('a')}>A</Avatar>
+              <Typography variant="caption" display="block" align="center">
+                {data.name}
+              </Typography>
+          </div>
+      )} 
+      <div className={classes.talker}> 
+        <Avatar className={classes.avatar}><AddIcon /></Avatar>
+      </div>
+    </div>
+  );
+}
+
+const ChatAddForm = ({types, selectType, onTypeClick, onAddChat, inputText, onTextChange}) => {
+  const classes = useStyles();
+  
+  return (
+       <form onSubmit={onAddChat}  className={classes.chatInputForm}>
+          <TalkerList />
+          <TypeList types={types} onClick={onTypeClick}/>
+          <div className={classes.chatInput}>
+            <input
+                type="text"
+                onChange={onTextChange}
+               // onChange={(e) =>
+               //     this.setState({
+               //         txtValue: e.target.value
+               //     })
+               // }
+                value={inputText}
+            />
+            <Button variant="contained" color="primary" onClick={onAddChat}>전송</Button>
+          </div>
+        </form> 
+    )
+  };
+
+const ChatBlock = ({chats,isEdit,onAddChat,inputText,onTextChange}) => {
+  const classes = useStyles();
+  
+  const [types, setTypes] = useState([
+    { name: '챕터', code:'chapter' ,active: false },
+    { name: '메세지', code:'msg' ,active: true},
+    { name: '텍스트', code:'text' ,active: false },
+    { name: '이미지' , code:'img' ,active: false},
+    { name: '유튜브' , code:'youtube' ,active: false},
+  ]);
+  
+  const onTypeClick = (typeCode) => {
+    setTypes(
+      types.map(
+        (type) =>
+          type.code === typeCode 
+         ? { ...type, active: true } 
+         : { ...type, active: false },
+      ),
+    );
+  };
+  
+                                                        
+  return (
+    <Container maxWidth="xs" className={classes.container}>
+      <ChatList chats={chats} isEdit={isEdit}/>
+      {isEdit && <ChatAddForm types={types} onTypeClick={onTypeClick} onAddChat={onAddChat} inputText={inputText}  onTextChange={onTextChange}/>} 
+    </Container>
+  );
+}
+
+const ChapterList = ({chapters}) => {
+  const list = chapters.map(chapter=> <div>{chapter.content}</div>);
+  return (
+    <div>{list}</div>
+  );
+}
+
+const CourseChat = ({chats,isEdit,onAddChat,inputText,onTextChange}) => {
+  const classes = useStyles();
+  
+  const chapters = chats.filter(chat => chat.type === 'chapter');
+  
+  return (
+    <div className={classes.wrap}>
+      <ChapterList chapters={chapters} isEdit={isEdit}/>
+      <ChatBlock chats={chats} isEdit={isEdit} onAddChat={onAddChat} inputText={inputText}  onTextChange={onTextChange}/>
+    </div>
   );
 };
 

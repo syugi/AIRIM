@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MainLayout from 'components/MainLayout';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -51,7 +52,7 @@ const CourseList = ({ course }) => {
                 description{course.description}
               </Typography>
               <Typography variant="subtitle1" color="primary">
-                <Link to={'/coursechat/' + course.id+'?edit=true'}>톡수정</Link>
+                <Link to={'/chat/' + course.id+'?edit=true'}>톡수정</Link>
               </Typography>
             </CardContent>
           </div>
@@ -89,19 +90,21 @@ const Instructor = () => {
 
   const classes = useStyles();
   return (
-    <Container maxWidth="md">
-      <Link to={'/editcourse/new'}>
-        <Button className={classes.button} variant="contained" color="primary">
-          새 강의 등록
-        </Button>
-      </Link>
+    <MainLayout header>
+      <Container maxWidth="md">
+        <Link to={'/editcourse/new'}>
+          <Button className={classes.button} variant="contained" color="primary">
+            새 강의 등록
+          </Button>
+        </Link>
 
-      <Grid container spacing={3}>
-        {courses.map((course) => (
-          <CourseList key={course.id} course={course} />
-        ))}
-      </Grid>
-    </Container>
+        <Grid container spacing={3}>
+          {courses.map((course) => (
+            <CourseList key={course.id} course={course} />
+          ))}
+        </Grid>
+      </Container>
+    </MainLayout>
   );
 };
 
