@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { useLocation } from 'react-router';
 import MainLayout from 'components/MainLayout';
 import { Container, Typography } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
@@ -60,16 +61,15 @@ const chatsArr = [
   },
 ] 
 
-const useStyles = makeStyles({
-});
-
-const Chat = ({ location }) => {
-  const classes = useStyles();
+const Chat = () => {
   const [chats, setChats] = useState(chatsArr);
   const [inputText, setInputText] = useState("");
   const [selectType, setSelectType] = useState(['msg']);
   
-  const onAddChat = (e) => {
+  const query = new URLSearchParams(useLocation().search);
+  const isEdit = query.get("edit") === 'true';  
+  
+  const onAddChat = (e) => { 
         // e.preventDefault();
         // //const { txtValue, chatMessageLists } = this.state;
        
@@ -100,13 +100,8 @@ const Chat = ({ location }) => {
     }
   
   const onTextChange = (e) => {
-    setInputText(e.target.value);
+    setInputText(e.target.value); 
   }
-  
-  const query = qs.parse(location.search, {
-    ignoreQueryPrefix: true
-  });
-  const isEdit = query.edit === 'true'; 
   
   return (
     <MainLayout header={{title: "course title"}}>

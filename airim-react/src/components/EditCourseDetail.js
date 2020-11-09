@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CourseSaveForm = () => {
+const EditCourseDetail = () => {
   const classes = useStyles();
 
   return (
@@ -86,4 +86,4 @@ const CourseSaveForm = () => {
   );
 };
 
-export default CourseSaveForm;
+export default EditCourseDetail;

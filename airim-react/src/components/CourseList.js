@@ -101,7 +101,7 @@ const CourseGrid = ({ courses, tags }) => {
   );
 };
 
-const CourseFilterList = ({tags, courses , onTagChange}) => {
+const CourseList = ({tags, courses , onTagChange}) => {
   
   const classes = useStyles();
 
@@ -113,4 +113,4 @@ const CourseFilterList = ({tags, courses , onTagChange}) => {
   );
 };
 
-export default CourseFilterList;
+export default CourseList;

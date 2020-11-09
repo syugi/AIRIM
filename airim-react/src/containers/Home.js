@@ -1,6 +1,6 @@
 import React , {useState} from 'react';
 import MainLayout from 'components/MainLayout';
-import CourseFilterList from 'components/CourseFilterList';
+import CourseList from 'components/CourseList';
 
 const coursesArr = [
     {
@@ -75,7 +75,7 @@ const Home = () => {
   
   return (
     <MainLayout header={{noBackBtn: true}}>
-      <CourseFilterList tags={tags} courses={courses} onTagChange={onTagChange}/>
+      <CourseList tags={tags} courses={courses} onTagChange={onTagChange}/>
     </MainLayout>
   ); 
 };

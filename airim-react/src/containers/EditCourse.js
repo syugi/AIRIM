@@ -8,9 +8,9 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import CourseInfo from 'components/CourseInfo';
-import CourseForm from 'components/CourseForm';
-import CourseInfoForm from 'components/CourseInfoForm';
+import CourseDetail from 'components/CourseDetail';
+import EditCourseForm from 'components/EditCourseForm';
+import EditCourseDetail from 'components/EditCourseDetail';
 
 const chatsArr = [
   {
@@ -97,11 +97,11 @@ const steps = ['강의정보', '강의소개', '미리보기'];
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <CourseForm />;
+      return <EditCourseForm />;
     case 1:
-      return <CourseInfoForm />;
+      return <EditCourseDetail />;
     case 2:
-      return <CourseInfo />;
+      return <CourseDetail />;
     default:
       throw new Error('Unknown step');
   }
