@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
@@ -65,8 +65,7 @@ const CourseBody = styled.div`
   }
 `;
 
-const CourseDetail = ({course}) => {
-  
+const CourseDetail = ({ course }) => {
   return (
     <Layout backImg={backImg}>
       <CoursHeader>
@@ -102,7 +101,7 @@ const CourseDetail = ({course}) => {
             <div>{course.instrDesc}</div>
           </p>
           <div className="center">
-            <Link to={'/chat/' + course.id}> 
+            <Link to={'/chat/' + course.id}>
               <Button variant="contained" color="primary">
                 학습하기
               </Button>

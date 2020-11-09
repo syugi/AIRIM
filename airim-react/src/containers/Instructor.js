@@ -52,7 +52,7 @@ const CourseList = ({ course }) => {
                 description{course.description}
               </Typography>
               <Typography variant="subtitle1" color="primary">
-                <Link to={'/chat/' + course.id+'?edit=true'}>톡수정</Link>
+                <Link to={'/chat/' + course.id + '?edit=true'}>톡수정</Link>
               </Typography>
             </CardContent>
           </div>
@@ -93,7 +93,11 @@ const Instructor = () => {
     <MainLayout header>
       <Container maxWidth="md">
         <Link to={'/editcourse/new'}>
-          <Button className={classes.button} variant="contained" color="primary">
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+          >
             새 강의 등록
           </Button>
         </Link>

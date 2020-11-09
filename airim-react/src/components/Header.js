@@ -20,12 +20,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ title, noBackBtn }) => { //backFunc, params
+const Header = ({ title, noBackBtn }) => {
+  //backFunc, params
   const classes = useStyles();
-  
+
   const history = useHistory();
   const [open, setOpen] = useState(false);
-  
+
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === 'keydown' &&
@@ -49,9 +50,9 @@ const Header = ({ title, noBackBtn }) => { //backFunc, params
           >
             <ArrowBackIos />
           </IconButton>
-        )}  
+        )}
         <Typography variant="h6" align="center" className={classes.title}>
-          <Link to="/">{!title ? DEFAULT_TITLE : title}</Link>
+          <Link to="/">{!title ? DEFAULT_TITLE : title}</Link>
         </Typography>
         <IconButton
           edge="start"
@@ -66,7 +67,6 @@ const Header = ({ title, noBackBtn }) => { //backFunc, params
       <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
         <DrawerMenu toggleDrawer={toggleDrawer} />
       </Drawer>
-      
     </div>
   );
 };

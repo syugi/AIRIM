@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import { useParams } from 'react-router'
+import React, { useState } from 'react';
+import { useParams } from 'react-router';
 import MainLayout from 'components/MainLayout';
 import CourseDetail from 'components/CourseDetail';
 
 const Home = () => {
   const { courseId } = useParams();
-  const [course, setCourse] = useState({ 
+  const [course, setCourse] = useState({
     id: 1,
     title: '파이썬 자연어처리 배우기',
     image: 'https://source.unsplash.com/user/ilyapavlov/600x400',
@@ -19,14 +19,14 @@ const Home = () => {
     instrDesc: '우렁이는 귀엽고, 착하고, 스마트하고 치킨을 좋아합니다!',
     instrName: '에이림 / 이재화 강사님',
   });
-  
-  const tagTitle = course.tags.map((tag,i) => i<2 ? tag+' ': '');
-  
+
+  const tagTitle = course.tags.map((tag, i) => (i < 2 ? tag + ' ' : ''));
+
   return (
-    <MainLayout header={{title: tagTitle}}>
-      <CourseDetail course={course}/>
+    <MainLayout header={{ title: tagTitle }}>
+      <CourseDetail course={course} />
     </MainLayout>
-  ); 
+  );
 };
 
 export default Home;
