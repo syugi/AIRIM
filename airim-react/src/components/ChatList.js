@@ -67,40 +67,28 @@ const BubbleRow = ({ chat }) => {
   const props = { position: chat.position, color: chat.color };
   const classes = useStyles(props);
 
-  const RightBubbleRow = ({ chat }) => {
-    return (
-      <>
-        <div>
-          <div className={classes.talker}>{chat.talker}</div>
-          <div className={classes.bubble}>{chat.content}</div>
-        </div>
-        <div className={classes.talkerImg}>
-          <img src={chat.talkerImg} alt="" />
-        </div>
-      </>
-    );
-  };
-
-  const LeftBubbleRow = ({ chat }) => {
-    return (
-      <>
-        <div className={classes.talkerImg}>
-          <img src={chat.talkerImg} alt="" />
-        </div>
-        <div>
-          <div className={classes.talker}>{chat.talker}</div>
-          <div className={classes.bubble}>{chat.content}</div>
-        </div>
-      </>
-    );
-  };
-
   return (
     <div className={classes.bubbleRow}>
       {props.position === 'right' ? (
-        <RightBubbleRow chat={chat} classes={classes} />
+        <>
+          <div>
+            <div className={classes.talker}>{chat.talker}</div>
+            <div className={classes.bubble}>{chat.content}</div>
+          </div>
+          <div className={classes.talkerImg}>
+            <img src={chat.talkerImg} alt="" />
+          </div>
+        </>
       ) : (
-        <LeftBubbleRow chat={chat} classes={classes} />
+        <>
+          <div className={classes.talkerImg}>
+            <img src={chat.talkerImg} alt="" />
+          </div>
+          <div>
+            <div className={classes.talker}>{chat.talker}</div>
+            <div className={classes.bubble}>{chat.content}</div>
+          </div>
+        </>
       )}
     </div>
   );
@@ -110,10 +98,10 @@ const ChatRow = ({ chat, idx }) => {
   const classes = useStyles();
   return (
     <>
-      {chat.talker ? (
-        <BubbleRow chat={chat} />
-      ) : (
+      {chat.position === 'center' ? (
         <div className={classes.centerRow}>{chat.content}</div>
+      ) : (
+        <BubbleRow chat={chat} />
       )}
     </>
   );

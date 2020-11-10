@@ -6,7 +6,7 @@ const EditCourseContainer = ({ match }) => {
   const { courseId } = match.params;
   const [course, setCourse] = useState({
     id: 1,
-    title: '파이썬 자연어처리 배우기aaa', 
+    title: '파이썬 자연어처리 배우기aaa',
     image: 'https://source.unsplash.com/user/ilyapavlov/600x400',
     tags: ['#파이썬', '#자연어처리'],
     lineIntro1: '#텐서플로 200% 활용',
@@ -18,10 +18,10 @@ const EditCourseContainer = ({ match }) => {
     instrDesc: '우렁이는 귀엽고, 착하고, 스마트하고 치킨을 좋아합니다!',
     instrName: '에이림 / 이재화 강사님',
   });
-  
+
   return (
     <MainLayout header>
-      <EditCourse course={course}/>
+      <EditCourse course={course} />
     </MainLayout>
   );
 };

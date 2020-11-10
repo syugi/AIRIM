@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MainLayout from 'components/MainLayout';
-import Instructor from 'components/Instructor'
+import Instructor from 'components/Instructor';
 
 const InstructorContainer = () => {
   const coursesArr = [
@@ -30,7 +30,7 @@ const InstructorContainer = () => {
 
   return (
     <MainLayout header>
-      <Instructor courses={courses}/>
+      <Instructor courses={courses} />
     </MainLayout>
   );
 };

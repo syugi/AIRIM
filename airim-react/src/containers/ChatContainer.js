@@ -1,4 +1,4 @@
-import React, { useState , useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
 import MainLayout from 'components/MainLayout';
@@ -6,20 +6,19 @@ import Chats from 'components/Chats';
 // import reset from 'styles/chat.scss';
 import { addChat } from 'modules/chats';
 
-
 const ChatContainer = () => {
-  
-  const chats= useSelector(state => state.chats);  
-  
+  const { chats } = useSelector(({ chats }) => ({
+    chats: chats.chats,
+  }));
+
   const dispatch = useDispatch();
 
-  const onCreate = text => dispatch(addChat(text));
- // const onToggle = useCallback(id => dispatch(toggleTodo(id)), [dispatch]); // 최적화를 위해 useCallback 사용
+  const onCreate = (text) => dispatch(addChat(text));
+  // const onToggle = useCallback(id => dispatch(toggleTodo(id)), [dispatch]); // 최적화를 위해 useCallback 사용
 
-  
   // const [chats, setChats] = useState(chatsArr);
-  const [inputText, setInputText] = useState('');
-  const [selectType, setSelectType] = useState(['msg']);
+  // const [inputText, setInputText] = useState('');
+  // const [selectType, setSelectType] = useState(['msg']);
 
   const query = new URLSearchParams(useLocation().search);
   const isEdit = query.get('edit') === 'true';
@@ -50,11 +49,7 @@ const ChatContainer = () => {
 
   return (
     <MainLayout header={{ title: 'course title' }}>
-      <Chats
-        isEdit={isEdit}
-        chats={chats}
-        onCreate={onCreate}
-      />
+      <Chats isEdit={isEdit} chats={chats} onCreate={onCreate} />
     </MainLayout>
   );
 };

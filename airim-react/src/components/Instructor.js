@@ -61,27 +61,22 @@ const CourseList = ({ course }) => {
   );
 };
 
-const Instructor = ({courses}) => {
-  
+const Instructor = ({ courses }) => {
   const classes = useStyles();
   return (
-      <Container maxWidth="md"> 
-        <Link to={'/editcourse/new'}>
-          <Button
-            className={classes.button}
-            variant="contained"
-            color="primary"
-          >
-            새 강의 등록
-          </Button>
-        </Link>
+    <Container maxWidth="md">
+      <Link to={'/editcourse/new'}>
+        <Button className={classes.button} variant="contained" color="primary">
+          새 강의 등록
+        </Button>
+      </Link>
 
-        <Grid container spacing={3}>
-          {courses.map((course) => (
-            <CourseList key={course.id} course={course} />
-          ))}
-        </Grid>
-      </Container>
+      <Grid container spacing={3}>
+        {courses.map((course) => (
+          <CourseList key={course.id} course={course} />
+        ))}
+      </Grid>
+    </Container>
   );
 };
 

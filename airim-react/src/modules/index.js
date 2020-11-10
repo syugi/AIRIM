@@ -4,11 +4,11 @@ import todos from './todos';
 import chats from './chats';
 
 const rootReducer = combineReducers({
-  chats ,
-  
-  //테스트 
-  counter, 
-  todos ,
+  chats,
+
+  //테스트
+  counter,
+  todos,
 });
 
 export default rootReducer;

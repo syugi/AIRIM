@@ -47,22 +47,20 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['강의정보', '강의소개', '미리보기'];
 
-const EditCourse = ({course}) => {
-  
-  const getStepContent = (step) =>{
+const EditCourse = ({ course }) => {
+  const getStepContent = (step) => {
     switch (step) {
       case 0:
-        return <EditCourseForm course={course}/>;
+        return <EditCourseForm course={course} />;
       case 1:
-        return <EditCourseDetail course={course}/>;
+        return <EditCourseDetail course={course} />;
       case 2:
-        return <Course course={course}/>;
+        return <Course course={course} />;
       default:
         throw new Error('Unknown step');
     }
-  }
+  };
 
-  
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
 
@@ -75,52 +73,52 @@ const EditCourse = ({course}) => {
   };
 
   return (
-      <div className={classes.layout}>
-        <Paper className={classes.paper}>
-          <Typography component="h1" variant="h4" align="center">
-            새 강의 등록
-          </Typography>
-          <Stepper activeStep={activeStep} className={classes.stepper}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          <Fragment>
-            {activeStep === steps.length ? (
-              <Fragment>
-                <Typography variant="h5" gutterBottom>
-                  강의 등록이 완료되었습니다.
-                </Typography>
-                <Typography variant="subtitle1">
-                  <Link href="/instructor">강의 관리 페이지</Link>에서 확인
-                  가능합니다.
-                </Typography>
-              </Fragment>
-            ) : (
-              <Fragment>
-                {getStepContent(activeStep)}
-                <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Save' : 'Next'}
+    <div className={classes.layout}>
+      <Paper className={classes.paper}>
+        <Typography component="h1" variant="h4" align="center">
+          새 강의 등록
+        </Typography>
+        <Stepper activeStep={activeStep} className={classes.stepper}>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <Fragment>
+          {activeStep === steps.length ? (
+            <Fragment>
+              <Typography variant="h5" gutterBottom>
+                강의 등록이 완료되었습니다.
+              </Typography>
+              <Typography variant="subtitle1">
+                <Link href="/instructor">강의 관리 페이지</Link>에서 확인
+                가능합니다.
+              </Typography>
+            </Fragment>
+          ) : (
+            <Fragment>
+              {getStepContent(activeStep)}
+              <div className={classes.buttons}>
+                {activeStep !== 0 && (
+                  <Button onClick={handleBack} className={classes.button}>
+                    Back
                   </Button>
-                </div>
-              </Fragment>
-            )}
-          </Fragment>
-        </Paper>
-      </div>
+                )}
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleNext}
+                  className={classes.button}
+                >
+                  {activeStep === steps.length - 1 ? 'Save' : 'Next'}
+                </Button>
+              </div>
+            </Fragment>
+          )}
+        </Fragment>
+      </Paper>
+    </div>
   );
 };
 

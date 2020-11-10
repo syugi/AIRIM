@@ -62,7 +62,7 @@ const useStyles = makeStyles({
 });
 
 const TypeList = ({ types, onClick }) => {
-  const classes = useStyles(); 
+  const classes = useStyles();
   return (
     <div className={classes.typeList}>
       {types.map((data) => {
@@ -134,7 +134,7 @@ const TalkerList = () => {
   );
 };
 
-const ChatAddForm = ({onCreate}) => {
+const ChatAddForm = ({ onCreate }) => {
   const classes = useStyles();
 
   const [types, setTypes] = useState([
@@ -154,26 +154,22 @@ const ChatAddForm = ({onCreate}) => {
       ),
     );
   };
-  
+
   const [text, setText] = useState('');
-  const onChange = e => setText(e.target.value);
-  const onSubmit = e => {
+  const onChange = (e) => setText(e.target.value);
+  const onSubmit = (e) => {
     e.preventDefault(); // Submit 이벤트 발생했을 때 새로고침 방지
     onCreate(text);
     setText(''); // 인풋 초기화
   };
-    
+
   return (
     <form onSubmit={onSubmit} className={classes.chatInputForm}>
       <TalkerList />
       <TypeList types={types} onClick={onTypeClick} />
       <div className={classes.chatInput}>
-        <input
-          type="text"
-          value={text}
-          onChange={onChange}
-        />
-        <Button type="submit" variant="contained" color="primary"> 
+        <input type="text" value={text} onChange={onChange} />
+        <Button type="submit" variant="contained" color="primary">
           전송
         </Button>
       </div>
@@ -186,9 +182,8 @@ const ChapterList = ({ chapters }) => {
   return <div>{list}</div>;
 };
 
-const Chats = ({ chats, isEdit, onCreate}) => {
-      
-  const classes = useStyles(); 
+const Chats = ({ chats, isEdit, onCreate }) => {
+  const classes = useStyles();
 
   const chapters = chats.filter((chat) => chat.type === 'chapter');
 
@@ -197,10 +192,8 @@ const Chats = ({ chats, isEdit, onCreate}) => {
       <ChapterList chapters={chapters} isEdit={isEdit} />
       <Container maxWidth="xs" className={classes.container}>
         <ChatList chats={chats} isEdit={isEdit} />
-        {isEdit && (
-          <ChatAddForm onCreate={onCreate} />
-        )}
-    </Container>
+        {isEdit && <ChatAddForm onCreate={onCreate} />}
+      </Container>
     </div>
   );
 };
