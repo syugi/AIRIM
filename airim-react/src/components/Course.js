@@ -65,7 +65,7 @@ const CourseBody = styled.div`
   }
 `;
 
-const CourseDetail = ({ course }) => {
+const Course = ({ course }) => {
   return (
     <Layout backImg={backImg}>
       <CoursHeader>
@@ -114,4 +114,4 @@ const CourseDetail = ({ course }) => {
   );
 };
 
-export default CourseDetail;
+export default Course;

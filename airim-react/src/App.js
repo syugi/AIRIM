@@ -4,11 +4,13 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styles/reset.scss';
 // import utils from 'styles/utils.scss';
 import Home from 'containers/Home';
-import Course from 'containers/Course';
-import Chat from 'containers/Chat';
-import Instructor from 'containers/Instructor';
-import EditCourse from 'containers/EditCourse';
+import CourseContainer from 'containers/CourseContainer';
+import ChatContainer from 'containers/ChatContainer';
+import InstructorContainer from 'containers/InstructorContainer';
+import EditCourseContainer from 'containers/EditCourseContainer';
+
 import CounterContainer from 'containers/CounterContainer';
+import TodosContainer from './containers/TodosContainer';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -24,13 +26,15 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
 
-        <Route path="/course/:courseId" component={Course} />
-        <Route path="/chat/:courseId" component={Chat} />
+        <Route path="/course/:courseId" component={CourseContainer} />
+        <Route path="/chat/:courseId" component={ChatContainer} />
 
-        <Route exact path="/instructor" component={Instructor} />
-        <Route path="/editcourse/:courseId" component={EditCourse} />
+        <Route exact path="/instructor" component={InstructorContainer} />
+        <Route path="/editcourse/:courseId" component={EditCourseContainer} />
       
         <Route path="/counter" component={CounterContainer} />
+        <Route path="/todos" component={TodosContainer} />
+      
         <Route
           // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
           render={({ location }) => (

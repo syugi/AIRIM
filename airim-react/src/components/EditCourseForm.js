@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import TagRow from 'components/TagRow';
 
-const EditCourseForm = () => {
+const EditCourseForm = ({course}) => {
   const tagsArr = [
     { id: 1, text: '#파이썬', active: false },
     { id: 2, text: '#자연어처리', active: false },

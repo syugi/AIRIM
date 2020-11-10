@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import MainLayout from 'components/MainLayout';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -62,36 +61,11 @@ const CourseList = ({ course }) => {
   );
 };
 
-const Instructor = () => {
-  const coursesArr = [
-    {
-      id: 1,
-      title: '파이썬 자연어처리 배우기',
-      instr_name: '에이림/이재화강사님',
-      image: 'https://source.unsplash.com/user/ilyapavlov/600x400',
-      tags: ['#파이썬', '#자연어처리'],
-    },
-    {
-      id: 2,
-      title: 'R머신러닝 자연어처리 배우기',
-      instr_name: '에이림/이재화강사님',
-      image: 'https://source.unsplash.com/user/erondu/600x400',
-      tags: ['#R머신러닝', '#자연어처리'],
-    },
-    {
-      id: 3,
-      title: '파이썬 텐서플로우 배우기',
-      instr_name: '에이림/이재화강사님',
-      image: 'https://source.unsplash.com/user/_vickyreyes/600x400',
-      tags: ['#파이썬', '#텐서플로우', '#이거이거'],
-    },
-  ];
-  const [courses, setCourses] = useState(coursesArr);
-
+const Instructor = ({courses}) => {
+  
   const classes = useStyles();
   return (
-    <MainLayout header>
-      <Container maxWidth="md">
+      <Container maxWidth="md"> 
         <Link to={'/editcourse/new'}>
           <Button
             className={classes.button}
@@ -108,7 +82,6 @@ const Instructor = () => {
           ))}
         </Grid>
       </Container>
-    </MainLayout>
   );
 };
 

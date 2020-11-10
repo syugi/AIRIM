@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditCourseDetail = () => {
+const EditCourseDetail = ({course}) => {
   const classes = useStyles();
 
   return (

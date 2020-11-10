@@ -62,7 +62,7 @@ const useStyles = makeStyles({
 });
 
 const TypeList = ({ types, onClick }) => {
-  const classes = useStyles();
+  const classes = useStyles(); 
   return (
     <div className={classes.typeList}>
       {types.map((data) => {
@@ -134,40 +134,7 @@ const TalkerList = () => {
   );
 };
 
-const ChatAddForm = ({
-  types,
-  selectType,
-  onTypeClick,
-  onAddChat,
-  inputText,
-  onTextChange,
-}) => {
-  const classes = useStyles();
-
-  return (
-    <form onSubmit={onAddChat} className={classes.chatInputForm}>
-      <TalkerList />
-      <TypeList types={types} onClick={onTypeClick} />
-      <div className={classes.chatInput}>
-        <input
-          type="text"
-          onChange={onTextChange}
-          // onChange={(e) =>
-          //     this.setState({
-          //         txtValue: e.target.value
-          //     })
-          // }
-          value={inputText}
-        />
-        <Button variant="contained" color="primary" onClick={onAddChat}>
-          전송
-        </Button>
-      </div>
-    </form>
-  );
-};
-
-const ChatBlock = ({ chats, isEdit, onAddChat, inputText, onTextChange }) => {
+const ChatAddForm = ({onCreate}) => {
   const classes = useStyles();
 
   const [types, setTypes] = useState([
@@ -187,20 +154,30 @@ const ChatBlock = ({ chats, isEdit, onAddChat, inputText, onTextChange }) => {
       ),
     );
   };
-
+  
+  const [text, setText] = useState('');
+  const onChange = e => setText(e.target.value);
+  const onSubmit = e => {
+    e.preventDefault(); // Submit 이벤트 발생했을 때 새로고침 방지
+    onCreate(text);
+    setText(''); // 인풋 초기화
+  };
+    
   return (
-    <Container maxWidth="xs" className={classes.container}>
-      <ChatList chats={chats} isEdit={isEdit} />
-      {isEdit && (
-        <ChatAddForm
-          types={types}
-          onTypeClick={onTypeClick}
-          onAddChat={onAddChat}
-          inputText={inputText}
-          onTextChange={onTextChange}
+    <form onSubmit={onSubmit} className={classes.chatInputForm}>
+      <TalkerList />
+      <TypeList types={types} onClick={onTypeClick} />
+      <div className={classes.chatInput}>
+        <input
+          type="text"
+          value={text}
+          onChange={onChange}
         />
-      )}
-    </Container>
+        <Button type="submit" variant="contained" color="primary"> 
+          전송
+        </Button>
+      </div>
+    </form>
   );
 };
 
@@ -209,23 +186,23 @@ const ChapterList = ({ chapters }) => {
   return <div>{list}</div>;
 };
 
-const CourseChat = ({ chats, isEdit, onAddChat, inputText, onTextChange }) => {
-  const classes = useStyles();
+const Chats = ({ chats, isEdit, onCreate}) => {
+      
+  const classes = useStyles(); 
 
   const chapters = chats.filter((chat) => chat.type === 'chapter');
 
   return (
     <div className={classes.wrap}>
       <ChapterList chapters={chapters} isEdit={isEdit} />
-      <ChatBlock
-        chats={chats}
-        isEdit={isEdit}
-        onAddChat={onAddChat}
-        inputText={inputText}
-        onTextChange={onTextChange}
-      />
+      <Container maxWidth="xs" className={classes.container}>
+        <ChatList chats={chats} isEdit={isEdit} />
+        {isEdit && (
+          <ChatAddForm onCreate={onCreate} />
+        )}
+    </Container>
     </div>
   );
 };
 
-export default CourseChat;
+export default Chats;
