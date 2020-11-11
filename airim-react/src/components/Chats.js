@@ -6,7 +6,9 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import TitleIcon from '@material-ui/icons/Title';
 import TextFormatIcon from '@material-ui/icons/TextFormat';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import ChatAddForm from 'components/ChatAddForm';
 
 const useStyles = makeStyles({
@@ -29,6 +31,8 @@ const useStyles = makeStyles({
 
   chatRow: {
     paddingBottom: '15px',
+    // background:'red', 
+    // display:'flex', 
     // transform: 'translateY(100px)',
     // opacity: '0',
     // animationName: 'testanim',
@@ -110,6 +114,10 @@ const ChatRow = ({ chat, idx }) => {
       ) : (
         <BubbleRow chat={chat} />
       )}
+      <div style={{float:'right'}}>
+        <EditIcon/> 
+        <DeleteIcon/> 
+      </div>
     </>
   );
 };
