@@ -40,6 +40,7 @@ const useStyles = makeStyles({
     // animationDuration: '0.5s',
     // animationFillMode: 'forwards',
   },
+  
   bubbleRow: {
     display: 'flex',
     // background:'red',
@@ -80,7 +81,7 @@ const useStyles = makeStyles({
     // display: table-cell;
     // vertical-align: middle;
   },
-});
+}); 
 
 const BubbleRow = ({ chat }) => {
   const props = { position: chat.position, color: chat.color };
@@ -89,16 +90,22 @@ const BubbleRow = ({ chat }) => {
   return (
     <div className={classes.bubbleRow}> 
       {
-        <>
-         <div style={{order: props.position === 'right' ? 1 : 2}}> 
-          {chat.talker && (<div className={classes.talker}>{chat.talker}</div>)}
-            <div className={classes.bubble}>{chat.content}</div> 
-          </div> 
+        <> 
           {chat.talkerImg && (
-          <div style={{order: props.position === 'right' ? 2 : 1}} className={classes.talkerImg}>
+          <div style={{order: props.position === 'left' ? 1 : 3}} className={classes.talkerImg}>
             <img src={chat.talkerImg} alt="" />
           </div>
           )}
+          <div style={{order: props.position === 'left' ? 2 : 2}}> 
+            {chat.talker && (<div className={classes.talker}>{chat.talker}</div>)}
+            <div style={{display:'flex'}}> 
+              <div className={classes.bubble}>{chat.content}</div> 
+              <div style={{order: props.position === 'left' ? 3 : 1, textAlign:'center'}} className={classes.editIcon}>
+                <EditIcon/>
+                <DeleteIcon/> 
+              </div>
+            </div>
+          </div>
         </>
       }
     </div>
@@ -114,10 +121,6 @@ const ChatRow = ({ chat, idx }) => {
       ) : (
         <BubbleRow chat={chat} />
       )}
-      <div style={{float:'right'}}>
-        <EditIcon/> 
-        <DeleteIcon/> 
-      </div>
     </>
   );
 };
