@@ -4,18 +4,24 @@ import { useLocation } from 'react-router';
 import MainLayout from 'components/MainLayout';
 import Chats from 'components/Chats';
 // import reset from 'styles/chat.scss';
-import { addChat } from 'modules/chats';
+import { insertChat , changeType , changeTalker } from 'modules/chats';
 
 const ChatContainer = () => {
-  const { chats } = useSelector(({ chats }) => ({
+  const { chats , talkers , types} = useSelector(({ chats }) => ({
     chats: chats.chats,
+    talkers: chats.talkers,
+    types: chats.types,
   }));
 
   const dispatch = useDispatch();
+ 
+  const onCreate = (talker,type,position,text) => dispatch(insertChat(talker,type,position,text));
+  const onChangeType = useCallback(id => dispatch(changeType(id)), [dispatch]);
+  const onChangeTalker = useCallback(id => dispatch(changeTalker(id)), [dispatch]);
+  
 
-  const onCreate = (text) => dispatch(addChat(text));
   // const onToggle = useCallback(id => dispatch(toggleTodo(id)), [dispatch]); // 최적화를 위해 useCallback 사용
-
+ 
   // const [chats, setChats] = useState(chatsArr);
   // const [inputText, setInputText] = useState('');
   // const [selectType, setSelectType] = useState(['msg']);
@@ -49,7 +55,7 @@ const ChatContainer = () => {
 
   return (
     <MainLayout header={{ title: 'course title' }}>
-      <Chats isEdit={isEdit} chats={chats} onCreate={onCreate} />
+      <Chats isEdit={isEdit} chats={chats} types={types} talkers={talkers} onCreate={onCreate} onChangeType={onChangeType} onChangeTalker={onChangeTalker}/>
     </MainLayout>
   );
 };
