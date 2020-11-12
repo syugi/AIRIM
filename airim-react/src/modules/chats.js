@@ -90,11 +90,10 @@ const typeArr = [
 const INSERT_CHAT = 'chats/INSERT_CHAT';
 const UPDATE_CHAT = 'chats/UPDATE_CHAT';
 const DELETE_CHAT = 'chats/DELETE_CHAT';
+const TOGGLE_CHAT_EDIT = 'chats/TOGGLE_CHAT_EDIT';
 const CHANGE_TALKER = 'chats/CHANGE_TALKER';
 const CHANGE_TYPE = 'chats/CHANGE_TYPE';
 
-// export const setDiff = createAction(SET_DIFF, diff => diff); //파라미터 전달
-// export const increase = createAction(INCREASE);
 
 /* 액션 생성함수 선언 */
 let nextId = 1; // chat 데이터에서 사용 할 고유 id
@@ -106,7 +105,9 @@ export const insertChat = createAction(INSERT_CHAT, (text,type,talker) => ({
   position: talker ? talker.position : 'center', 
   talkerImg: talker.imgPath,
 })); //파라미터 전달
-
+export const toggleChatEdit = createAction(TOGGLE_CHAT_EDIT, id => id);
+export const updateChat = createAction(UPDATE_CHAT, (id,text) => ({id,text}));
+export const deleteChat = createAction(DELETE_CHAT, id => id);
 export const changeTalker = createAction(CHANGE_TALKER, id => id);
 export const changeType = createAction(CHANGE_TYPE, id => id);
 
@@ -120,14 +121,6 @@ const initialState = {
   types: typeArr,
 };
 
-//const initialState = chatsArr;
-
- //   types.map((type) =>
-    //     type.code === typeCode
-    //       ? { ...type, active: true }
-    //       : { ...type, active: false },
-    //   ),
-
 const chats = handleActions(
   {
     [INSERT_CHAT]: (state, { payload: chat }) => ({
@@ -135,10 +128,30 @@ const chats = handleActions(
       chats: state.chats.concat(chat),
     }),
     
-    // [CHANGE_TALKER]: (state, {payload: talkerId}) => {
-    //   alert(JSON.stringify(state.talkers));
-    // }, 
-    
+     // [UPDATE_CHAT]: (state,action) =>{
+     //   alert(JSON.stringify(action)); 
+     // },
+    [UPDATE_CHAT]: (state, { payload: updateChat }) => ({
+      ...state, 
+     chats: state.chats.map((chat) =>
+        chat.id === updateChat.id
+         ? {...chat, content: updateChat.text, isEdit:false}
+         : chat)
+    }),
+      
+    [DELETE_CHAT]: (state, {payload: chatId}) => ({
+      ...state, 
+     chats: state.chats.filter((chat) => chat.id !== chatId)
+    }),
+      
+    [TOGGLE_CHAT_EDIT]: (state, {payload: chatId}) => ({
+      ...state, 
+     chats: state.chats.map((chat) =>
+        chat.id === chatId
+         ? {...chat, isEdit: !chat.isEdit}  
+         : {...chat, isEdit:false}) 
+    }),
+
     [CHANGE_TALKER]: (state, {payload: talkerId}) => ({
       ...state,
       talkers: state.talkers.map((talker) =>

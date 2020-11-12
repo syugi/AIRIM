@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, Button, Chip, Avatar } from '@material-ui/core';
 import PhotoIcon from '@material-ui/icons/Photo';
@@ -107,7 +107,7 @@ const TalkerList = ({talkers, onClick}) => {
   );
 };
 
-const ChatAddForm = ({ types, talkers, onCreate , onChangeType , onChangeTalker}) => {
+const ChatAddForm = ({ types, talkers, onInsertChat , onChangeType , onChangeTalker, onChatListScroll}) => {
   const classes = useStyles();
 
   const getActiveType = () => { 
@@ -118,26 +118,31 @@ const ChatAddForm = ({ types, talkers, onCreate , onChangeType , onChangeTalker}
     return talkers.find(talker=> talker.active);
   } 
   
+  const chatInputRef = useRef();
   const [text, setText] = useState('');
-  const onChange = (e) => setText(e.target.value);
-  const onSubmit = (e) => {
+  const handleChange = (e) => setText(e.target.value);
+  const handleSubmit = (e) => {
     e.preventDefault(); // Submit 이벤트 발생했을 때 새로고침 방지
+    if(!text) return; 
     const type = getActiveType(); 
     const talker = !type.isNoTalker && getActiveTalker();
-    onCreate(text,type,talker); 
+    onInsertChat(text,type,talker); 
     setText(''); // 인풋 초기화 
+    onChatListScroll();    
+    chatInputRef.current.focus(); 
   };
 
   return (
-    <form onSubmit={onSubmit} className={classes.chatInputForm}>
+    <form onSubmit={handleSubmit} className={classes.chatInputForm}>
       <TalkerList talkers={talkers} onClick={onChangeTalker}/>
       <TypeList types={types} onClick={onChangeType} />
       <div className={classes.chatInput}>
-        <input type="text" value={text} onChange={onChange} />
+        <input type="text" value={text} onChange={handleChange} ref={chatInputRef}/>
         <Button type="submit" variant="contained" color="primary">
           전송
         </Button>
       </div>
+      <button onClick={onChatListScroll}>test</button>
     </form>
   );
 };

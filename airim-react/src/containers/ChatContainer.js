@@ -4,7 +4,7 @@ import { useLocation } from 'react-router';
 import MainLayout from 'components/MainLayout';
 import Chats from 'components/Chats';
 // import reset from 'styles/chat.scss';
-import { insertChat , changeType , changeTalker } from 'modules/chats';
+import { insertChat ,updateChat,deleteChat, toggleChatEdit, changeType , changeTalker } from 'modules/chats';
 
 const ChatContainer = () => {
   const { chats , talkers , types} = useSelector(({ chats }) => ({
@@ -13,9 +13,12 @@ const ChatContainer = () => {
     types: chats.types,
   }));
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
  
-  const onCreate = (talker,type,position,text) => dispatch(insertChat(talker,type,position,text));
+  const onInsertChat = (talker,type,position,text) => dispatch(insertChat(talker,type,position,text));
+  const onUpdateChat = useCallback((id,text) => dispatch(updateChat(id,text)), [dispatch]);
+  const onDeleteChat = useCallback(id => dispatch(deleteChat(id)), [dispatch]);
+  const onToggleChatEdit = useCallback(id => dispatch(toggleChatEdit(id)), [dispatch]);
   const onChangeType = useCallback(id => dispatch(changeType(id)), [dispatch]);
   const onChangeTalker = useCallback(id => dispatch(changeTalker(id)), [dispatch]);
   
@@ -55,7 +58,17 @@ const ChatContainer = () => {
 
   return (
     <MainLayout header={{ title: 'course title' }}>
-      <Chats isEdit={isEdit} chats={chats} types={types} talkers={talkers} onCreate={onCreate} onChangeType={onChangeType} onChangeTalker={onChangeTalker}/>
+      <Chats 
+        isEdit={isEdit} 
+        chats={chats} 
+        types={types} 
+        talkers={talkers} 
+        onInsertChat={onInsertChat} 
+        onUpdateChat={onUpdateChat} 
+        onDeleteChat={onDeleteChat} 
+        onToggleChatEdit={onToggleChatEdit} 
+        onChangeType={onChangeType} 
+        onChangeTalker={onChangeTalker}/>
     </MainLayout>
   );
 };
