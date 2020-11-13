@@ -11,6 +11,8 @@ import EditCourseContainer from 'containers/EditCourseContainer';
 
 import CounterContainer from 'containers/CounterContainer';
 import TodosContainer from './containers/TodosContainer';
+import Users from './containers/Users';
+
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -34,6 +36,8 @@ const App = () => {
       
         <Route path="/counter" component={CounterContainer} />
         <Route path="/todos" component={TodosContainer} />
+      <Route path="/users" component={Users} />
+        
       
         <Route
           // path를 따로 정의하지 않으면 모든 상황에 렌더링됨

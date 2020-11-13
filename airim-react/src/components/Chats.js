@@ -159,8 +159,8 @@ const Chats = ({
     const props = { position: chat.position, color: chat.color };
     const classes = useStyles(props);
 
-    return (
-      <div className={classes.bubbleRow}> 
+    return ( 
+      <div className={classes.bubbleRow}> 
         {
        chat.position == 'left' 
             ? (
@@ -207,7 +207,7 @@ const Chats = ({
       setEditChatText(e.target.value);
     };
     
-    let content = <>{chat.content}</>;
+    let content = <>{chat.content}</>;
     if(chat.isEdit){
       content = <input type="text" value={editChatText} onChange={handleChange}/> ;
     } 

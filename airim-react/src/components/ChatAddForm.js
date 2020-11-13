@@ -1,6 +1,6 @@
 import React, { useState , useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Typography, Button, Chip, Avatar } from '@material-ui/core';
+import { Container, Typography, Button, Chip, Avatar , TextareaAutosize} from '@material-ui/core';
 import PhotoIcon from '@material-ui/icons/Photo';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import TitleIcon from '@material-ui/icons/Title';
@@ -10,7 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
   chatInputForm: {
-    backgroundColor: '#fff',
+    backgroundColor: '#718592', 
   },
   talkerList: {
     display: 'flex',
@@ -36,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
     // bottom: 0,
     // left: 0;
 
-    '& input': {
+    //'& textarea': { 
+    '& input': { 
       width: '100%',
-      // height:'100%',
-      padding: '0 5px',
+      padding: '5px', 
       border: 0,
       outline: 'none',
       backgroundColor: '#fff',
@@ -111,11 +111,11 @@ const ChatAddForm = ({ types, talkers, onInsertChat , onChangeType , onChangeTal
   const classes = useStyles();
 
   const getActiveType = () => { 
-    return types.find(type=> type.active);
+    return types.find(type=> type.active);
   } 
   
-  const getActiveTalker = () => {
-    return talkers.find(talker=> talker.active);
+  const getActiveTalker = () => { 
+    return talkers.find(talker=> talker.active);
   } 
   
   const chatInputRef = useRef();
@@ -124,24 +124,27 @@ const ChatAddForm = ({ types, talkers, onInsertChat , onChangeType , onChangeTal
   const handleSubmit = (e) => {
     e.preventDefault(); // Submit 이벤트 발생했을 때 새로고침 방지
     if(!text) return; 
-    const type = getActiveType(); 
+    const type = getActiveType();
     const talker = !type.isNoTalker && getActiveTalker();
-    onInsertChat(text,type,talker); 
+    // const newText = text.replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '{"￦n"}');
+    onInsertChat(text,type,talker);
     setText(''); // 인풋 초기화 
-    onChatListScroll();    
-    chatInputRef.current.focus(); 
+    onChatListScroll();    
+    chatInputRef.current.focus(); 
   };
 
-  return (
+  return ( 
     <form onSubmit={handleSubmit} className={classes.chatInputForm}>
       <TalkerList talkers={talkers} onClick={onChangeTalker}/>
       <TypeList types={types} onClick={onChangeType} />
       <div className={classes.chatInput}>
+        {/*<TextareaAutosize aria-label={text} value={text} rowsMax={3}  onChange={handleChange} ref={chatInputRef}/>*/}
         <input type="text" value={text} onChange={handleChange} ref={chatInputRef}/>
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="contained" color="primary" >
           전송
         </Button>
       </div>
+      
       <button onClick={onChatListScroll}>test</button>
     </form>
   );

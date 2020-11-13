@@ -56,6 +56,15 @@ const chatsArr = [
     talkerImg:
       'https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80',
   },
+  // {  
+  //   id: 6,
+  // talker: '',
+  // type: 'msg',
+  //   position: 'right',
+  //   content: '안녕하세요{"￦n"}줄바꿈되나요?<br>이거여기',
+  //   talkerImg: 
+  //     'https://images.unsplash.com/photo-1429117257281-73c32df3dcdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80',
+  // },
 ];
 
 const talkerArr = [
@@ -95,12 +104,12 @@ const CHANGE_TALKER = 'chats/CHANGE_TALKER';
 const CHANGE_TYPE = 'chats/CHANGE_TYPE';
 
 
-/* 액션 생성함수 선언 */
+/* 액션 생성함수 선언 */ 
 let nextId = 1; // chat 데이터에서 사용 할 고유 id
 export const insertChat = createAction(INSERT_CHAT, (text,type,talker) => ({
   id: nextId++, // 새 항목을 추가하고 nextId 값에 1을 더해줍니다.
   type: type.code, //msg, img, youtube, notice, chapter
-  content: text,  
+  content: text,  
   talker: talker.name,
   position: talker ? talker.position : 'center', 
   talkerImg: talker.imgPath,
