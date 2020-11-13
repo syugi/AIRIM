@@ -12,6 +12,7 @@ import EditCourseContainer from 'containers/EditCourseContainer';
 import CounterContainer from 'containers/CounterContainer';
 import TodosContainer from './containers/TodosContainer';
 import Users from './containers/Users';
+import Webtoon from './containers/Webtoon';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/counter" component={CounterContainer} />
         <Route path="/todos" component={TodosContainer} />
       <Route path="/users" component={Users} />
+      <Route path="/wehtoon" component={Webtoon} />
         
       
         <Route
