@@ -24,13 +24,22 @@ const useStyles = makeStyles({
     padding: 0,
   },
   
-  
   chatList: {
     height: '600px',
     overflow: 'auto',
     padding: '1em',
   },
 
+  editRow:{
+    margin:'0 5px', 
+    cursor: 'pointer',
+    opacity: (props) => props.isEdit ? 100:0,
+    '&:hover':{ 
+      //background:'red',
+      opacity: 100,
+    }
+  },
+  
   chatRow: {
     paddingBottom: '15px',
     // background:'red', 
@@ -99,7 +108,7 @@ const Chats = ({
   onChangeType, 
   onChangeTalker}) => {
   
-  const classes = useStyles();
+  const classes = useStyles(); 
    
   const chapters = chats.filter((chat) => chat.type === 'chapter');
 
@@ -108,6 +117,13 @@ const Chats = ({
   const chatListRef = useRef();
   
   const EditRow = ({chat}) => {
+    
+    const props = { isEdit: chat.isEdit};
+    const classes = useStyles(props);
+
+    if(!isEdit){
+      return <></>;
+    }
     
     const handleEditClick = () => {
        setEditChatText(chat.content);
@@ -119,9 +135,12 @@ const Chats = ({
     const handleDeleteClick = () => {
        onDeleteChat(chat.id)
     };
+    const handleCloseClick = () => {
+       onToggleChatEdit(chat.id);
+    };
     
-    return ( 
-        <div style={{margin:'0 5px', cursor: 'pointer'}}>
+    return (
+        <div  className={classes.editRow}>
           {!chat.isEdit 
            ? (<>
                 <EditIcon fontSize="small" onClick={handleEditClick}/>
@@ -129,10 +148,9 @@ const Chats = ({
               </>)
            : (<>
                 <SaveIcon fontSize="small" onClick={handleSaveClick}/>
-                <CloseIcon fontSize="small" onClick={handleEditClick}/>
+                <CloseIcon fontSize="small" onClick={handleCloseClick}/>
               </>)
           }
-          
        </div> 
     );
   };
@@ -192,7 +210,7 @@ const Chats = ({
     let content = <>{chat.content}</>;
     if(chat.isEdit){
       content = <input type="text" value={editChatText} onChange={handleChange}/> ;
-    }
+    } 
 
     return (
       <>
@@ -208,7 +226,7 @@ const Chats = ({
     );
   };
 
-  const ChatList = ({ chats }) => {
+  const ChatList = ({ chats , onClick}) => {
     const classes = useStyles();
 
     const list = chats.map((chat, idx) => (
@@ -216,7 +234,7 @@ const Chats = ({
         <ChatRow chat={chat}/>
       </div>
     ));
-
+    
     return <div className={classes.chatList} ref={chatListRef}>{list}</div>; 
   };
 
@@ -226,15 +244,15 @@ const Chats = ({
     return <div>{list}</div>;
   };
              
-  const onChatListScroll = () => {
-    chatListRef.current.scrollBy(0, 500);
+  const onChatListScroll = () => {
+    chatListRef.current.scrollBy(0, 500);
   };
     
-  return (
+  return (
     <div className={classes.wrap}>
       <ChapterList chapters={chapters}/>
       <Container maxWidth="xs" className={classes.container}>
-        <ChatList chats={chats}/>
+        <ChatList chats={chats}/>
         {isEdit && 
           <ChatAddForm 
             types={types} 
