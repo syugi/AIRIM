@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import MainLayout from 'components/MainLayout';
 import EditCourse from 'components/EditCourse';
 

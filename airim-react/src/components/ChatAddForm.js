@@ -1,6 +1,6 @@
-import React, { useState , useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Typography, Button, Chip, Avatar , TextareaAutosize} from '@material-ui/core';
+import { Typography, Button, Chip, Avatar } from '@material-ui/core';
 import PhotoIcon from '@material-ui/icons/Photo';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import TitleIcon from '@material-ui/icons/Title';
@@ -10,7 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
   chatInputForm: {
-    backgroundColor: '#718592', 
+    backgroundColor: '#718592',
   },
   talkerList: {
     display: 'flex',
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
   },
   activeTalker: {
-    border:'4px blue solid', 
+    border: '4px blue solid',
   },
   typeList: {
     '& > *': {
@@ -36,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
     // bottom: 0,
     // left: 0;
 
-    //'& textarea': { 
-    '& input': { 
+    //'& textarea': {
+    '& input': {
       width: '100%',
-      padding: '5px', 
+      padding: '5px',
       border: 0,
       outline: 'none',
       backgroundColor: '#fff',
@@ -85,14 +85,17 @@ const TypeList = ({ types, onClick }) => {
   );
 };
 
-const TalkerList = ({talkers, onClick}) => {
+const TalkerList = ({ talkers, onClick }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.talkerList}>
-      {talkers.map((talker) => ( 
-        <div className={classes.talker} onClick={() => onClick(talker.id)}>  
-          <Avatar className={talker.active && classes.activeTalker} src={talker.imgPath}/>
+      {talkers.map((talker) => (
+        <div className={classes.talker} onClick={() => onClick(talker.id)}>
+          <Avatar
+            className={talker.active && classes.activeTalker}
+            src={talker.imgPath}
+          />
           <Typography variant="caption" display="block" align="center">
             {talker.name}
           </Typography>
@@ -107,44 +110,56 @@ const TalkerList = ({talkers, onClick}) => {
   );
 };
 
-const ChatAddForm = ({ types, talkers, onInsertChat , onChangeType , onChangeTalker, onChatListScroll}) => {
+const ChatAddForm = ({
+  types,
+  talkers,
+  onInsertChat,
+  onChangeType,
+  onChangeTalker,
+  onChatListScroll,
+}) => {
   const classes = useStyles();
 
-  const getActiveType = () => { 
-    return types.find(type=> type.active);
-  } 
-  
-  const getActiveTalker = () => { 
-    return talkers.find(talker=> talker.active);
-  } 
-  
+  const getActiveType = () => {
+    return types.find((type) => type.active);
+  };
+
+  const getActiveTalker = () => {
+    return talkers.find((talker) => talker.active);
+  };
+
   const chatInputRef = useRef();
   const [text, setText] = useState('');
   const handleChange = (e) => setText(e.target.value);
   const handleSubmit = (e) => {
     e.preventDefault(); // Submit 이벤트 발생했을 때 새로고침 방지
-    if(!text) return; 
+    if (!text) return;
     const type = getActiveType();
     const talker = !type.isNoTalker && getActiveTalker();
     // const newText = text.replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '{"￦n"}');
-    onInsertChat(text,type,talker);
-    setText(''); // 인풋 초기화 
-    onChatListScroll();    
-    chatInputRef.current.focus(); 
+    onInsertChat(text, type, talker);
+    setText(''); // 인풋 초기화
+    onChatListScroll();
+    chatInputRef.current.focus();
   };
 
-  return ( 
+  return (
     <form onSubmit={handleSubmit} className={classes.chatInputForm}>
-      <TalkerList talkers={talkers} onClick={onChangeTalker}/>
+      <TalkerList talkers={talkers} onClick={onChangeTalker} />
       <TypeList types={types} onClick={onChangeType} />
       <div className={classes.chatInput}>
         {/*<TextareaAutosize aria-label={text} value={text} rowsMax={3}  onChange={handleChange} ref={chatInputRef}/>*/}
-        <input type="text" value={text} onChange={handleChange} ref={chatInputRef}/>
-        <Button type="submit" variant="contained" color="primary" >
+        <input
+          type="text"
+          value={text}
+          onChange={handleChange}
+          ref={chatInputRef}
+        />
+        <Button type="submit" variant="contained" color="primary">
           전송
         </Button>
       </div>
-      
+
       <button onClick={onChatListScroll}>test</button>
     </form>
   );

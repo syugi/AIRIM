@@ -6,19 +6,19 @@ function reducer(state, action) {
       return {
         loading: true,
         data: null,
-        error: null
+        error: null,
       };
     case 'SUCCESS':
       return {
         loading: false,
         data: action.data,
-        error: null
+        error: null,
       };
     case 'ERROR':
       return {
         loading: false,
         data: null,
-        error: action.error
+        error: action.error,
       };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -29,7 +29,7 @@ function useAsync(callback, deps = []) {
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
     data: null,
-    error: false
+    error: false,
   });
 
   const fetchData = async () => {
