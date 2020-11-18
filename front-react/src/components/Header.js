@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
   // },
   title: {
     flexGrow: 1,
-    fontWeight: 'bold',
   },
 }));
 
@@ -52,7 +51,7 @@ const Header = ({ title, noBackBtn }) => {
             <ArrowBackIos />
           </IconButton>
         )}
-        <Typography variant="h5" align="center" className={classes.title}>
+        <Typography variant="h6" align="center" className={classes.title}>
           <Link to="/">{!title ? DEFAULT_TITLE : title}</Link>
         </Typography>
         <IconButton
